@@ -1,0 +1,2670 @@
+/* =========================================================================
+   KCGLOBAL WORLD ENTERPRISES
+   Single stylesheet. Token-driven — every colour, font, space, radius and
+   shadow below comes from :root. Past this block the only raw values are
+   effect-local alpha derivations of the palette (gradient stops, focus glows,
+   image scrims), which exist to serve one composition and are commented.
+   ========================================================================= */
+
+/* ===== TOKENS ===== */
+:root {
+  /* --- colour --- */
+  --green-900: #1B4332;
+  --green-700: #2D6A4F;
+  /* Deeper shade of --green-900, for gradient depth on dark bands only */
+  --green-950: #143528;
+  --gold: #D4AF37;
+
+  /* Alpha variants of --gold, for hairline frames and tag borders */
+  --gold-60: rgba(212, 175, 55, 0.6);
+  --gold-28: rgba(212, 175, 55, 0.28);
+  --white: #FFFFFF;
+  --surface: #F8F9FA;
+  --ink: #1F2937;
+  --ink-soft: #6B7280;
+  --overlay: rgba(27, 67, 50, 0.72);
+
+  /* Text and borders on dark green / imagery */
+  --on-dark: rgba(255, 255, 255, 0.88);
+  --on-dark-soft: rgba(255, 255, 255, 0.72);
+  /* 0.62 rather than a lighter value: it keeps the footer motto at 5.3:1 on
+     --green-900, where 0.55 sat right on the 4.5:1 line. */
+  --on-dark-faint: rgba(255, 255, 255, 0.62);
+
+  /* Form validation. Dark enough to clear 4.5:1 on --surface and --white. */
+  --danger: #9B1C1C;
+
+  /* WhatsApp brand green — deliberately outside the palette. The floating
+     chat button is a recognition affordance; people scan for this colour. */
+  --whatsapp: #25D366;
+  --whatsapp-dark: #1DA851;
+
+  /* Green at alpha, for the ghost-button border and image tags */
+  --rule-green: rgba(27, 67, 50, 0.28);
+  --green-scrim: rgba(27, 67, 50, 0.86);
+
+  /* neutral divider vs. the signature gold hairline */
+  --rule-neutral: rgba(31, 41, 55, 0.08);
+  --rule-neutral-strong: rgba(31, 41, 55, 0.2);
+  --rule-neutral-inverse: rgba(255, 255, 255, 0.16);
+
+  /* --- typography -----------------------------------------------------
+     Display: DM Serif Display, which ships exactly one weight (400) plus an
+     italic. Hierarchy therefore comes from size, measure and space — never
+     from font-weight. Asking for 600 or 700 on it only triggers the browser's
+     synthetic bold, which smears a high-contrast serif and is the single
+     fastest way to make this look cheap. Nothing below sets a weight on it.
+
+     Body/UI: Manrope at 400/500/600/700 — a geometric sans with a tall
+     x-height that stays legible at metadata sizes and holds its own next to
+     an editorial serif without competing with it. */
+  --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Display scale — set in the serif */
+  --fs-display: clamp(2.75rem, 6.2vw, 4.75rem);   /* hero headline */
+  --fs-h1: clamp(2.25rem, 4.6vw, 3.5rem);         /* inner-page headline */
+  --fs-h2: clamp(1.875rem, 3.4vw, 2.75rem);
+  --fs-quote: clamp(1.25rem, 2.4vw, 1.625rem);
+
+  /* UI scale — set in Manrope */
+  --fs-h3: 1.1875rem;
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: 0.9375rem;
+  --fs-meta: 0.875rem;
+  --fs-caption: 0.8125rem;
+  --fs-eyebrow: 0.75rem;
+  --fs-nav: 0.9375rem;
+  --fs-btn: 0.9375rem;
+
+  /* Weights. Manrope only — the display face has none to choose from. */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Line height. DM Serif Display sets far tighter than Playfair did at the
+     same size, so display leading drops into the 1.0–1.16 band; anything
+     looser opens gaps the eye reads as broken lines. Body sits at 1.65. */
+  --lh-display: 1.02;
+  --lh-tight: 1.08;
+  --lh-heading: 1.16;
+  --lh-snug: 1.35;
+  --lh-body: 1.65;
+
+  /* Tracking. The serif wants a little negative at display sizes to close up
+     its natural sidebearings; Manrope wants positive when set small and
+     uppercase, where tight tracking turns labels into a smudge. */
+  --ls-display: -0.021em;
+  --ls-heading: -0.014em;
+  --ls-eyebrow: 0.16em;
+  --ls-label: 0.08em;
+  --ls-btn: 0.05em;
+
+  /* --- spacing (8px scale) --- */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-6: 48px;
+  --s-8: 64px;
+  --s-12: 96px;
+  --s-16: 128px;
+
+  --section-y: clamp(64px, 10vw, 128px);
+  --container: 1200px;
+  --gutter: clamp(20px, 5vw, 40px);
+  --grid-gap: var(--s-4);
+
+  /* --- radius --- */
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  /* Buttons: DESIGN-SYSTEM offers pill or 12px and recommends 12px for a more
+     architectural feel. Committed to 12px site-wide. */
+  --r-btn: 12px;
+
+  /* --- shadow --- */
+  --shadow-sm: 0 4px 16px rgba(27, 67, 50, 0.06);
+  --shadow-md: 0 12px 32px rgba(27, 67, 50, 0.10);
+  --shadow-lg: 0 24px 48px rgba(27, 67, 50, 0.14);
+
+  /* --- motion --- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 200ms;
+  --t-mid: 400ms;
+  --t-slow: 600ms;
+
+  /* --- chrome --- */
+  --header-h: 88px;
+  --header-h-scrolled: 68px;
+}
+
+/* ===== RESET ===== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  scroll-behavior: smooth;
+  /* keep anchored sections clear of the sticky header */
+  scroll-padding-top: var(--header-h-scrolled);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg, iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+ul, ol { list-style: none; padding: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== TYPOGRAPHY =====
+   The split that makes this system work: h1 and h2 are *editorial* — page and
+   section headlines — and are set in the display serif. h3 and h4 are
+   *interface* — card titles, sub-heads, field groups — and stay in Manrope.
+
+   DM Serif Display is a display face in the literal sense: it is drawn for
+   large sizes, and its thin strokes go weak and spindly below ~20px. Setting
+   card titles in it would cost legibility exactly where a buyer is scanning
+   fastest. So the serif carries the voice, and the sans carries the work. */
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+  color: var(--green-900);
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+}
+
+h2 { font-size: var(--fs-h2); }
+
+h3, h4 {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  letter-spacing: 0;
+  color: var(--green-900);
+}
+
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-body); }
+
+/* Measure. 68ch is the outer limit for comfortable reading; long-form prose
+   on the detail pages is held tighter still (see .prose). */
+p { max-width: 68ch; }
+
+::selection {
+  background: var(--green-900);
+  color: var(--white);
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Section padding lives on the section element itself so child utilities
+   can never cancel it out (CLAUDE.md §6). */
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--surface { background: var(--surface); }
+
+/* Neutral divider between adjacent light sections */
+.section--ruled { border-top: 1px solid var(--rule-neutral); }
+
+/* ===== EYEBROW (signature gold hairline motif) =====
+   DESIGN-SYSTEM specifies gold eyebrow text, but also forbids gold text on
+   light backgrounds (≈2:1, fails AA). Resolution: keep the gold *hairline*
+   everywhere — the actual motif — and set the label in green on light
+   surfaces (6.3:1) and gold on dark surfaces (5.3:1). Both pass AA. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--green-700);
+  margin-bottom: var(--s-3);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  flex: none;
+}
+
+.eyebrow--center { justify-content: center; }
+
+.eyebrow--inverse { color: var(--gold); }
+
+/* Short gold rule used beneath headlines */
+.hairline {
+  width: 72px;
+  height: 1px;
+  background: var(--gold);
+  border: 0;
+  margin: var(--s-3) 0;
+}
+
+.hairline--center { margin-inline: auto; }
+
+/* ===== SECTION HEADER ===== */
+.section-head {
+  max-width: 720px;
+  margin-bottom: var(--s-8);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head--center .eyebrow { justify-content: center; }
+
+.section-head p {
+  margin-top: var(--s-3);
+  font-size: var(--fs-body-lg);
+  color: var(--ink-soft);
+}
+
+.section-head--center p { margin-inline: auto; }
+
+/* Centred "view the full page" link that closes a teaser block on the home
+   page. Sits on its own row so it never competes with the grid above it. */
+.section-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--s-8);
+}
+
+/* ===== PAGE HEADER (inner pages) =====
+   The inner-page counterpart to the hero: same dark ground and gold hairline,
+   but a fixed band rather than a full viewport — a detail page should show
+   its content above the fold, not make you scroll past a second hero. */
+.page-header {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 58vh;
+  padding-block: calc(var(--header-h) + var(--s-8)) var(--s-8);
+  overflow: hidden;
+  background: var(--green-900);
+  color: var(--white);
+  isolation: isolate;
+}
+
+.page-header__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Two-stop scrim: heaviest at the foot where the type sits, so the headline
+   holds 4.5:1 regardless of what the photograph is doing behind it. */
+.page-header__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(20, 53, 40, 0.62) 0%, rgba(20, 53, 40, 0.88) 100%);
+}
+
+.page-header__inner { max-width: 780px; }
+
+/* Deliberately a step below the hero: an inner page announces itself, it does
+   not perform. Sizing comes from the shared --fs-h1 token. */
+.page-header__title {
+  max-width: 20ch;
+  line-height: var(--lh-tight);
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.page-header__lede {
+  max-width: 62ch;
+  font-size: var(--fs-body-lg);
+  color: var(--on-dark);
+}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb { margin-bottom: var(--s-3); }
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: var(--fs-meta);
+  color: var(--on-dark-soft);
+}
+
+.breadcrumb__list li { display: flex; align-items: center; gap: var(--s-1); }
+
+/* Separator is decorative, so it is drawn rather than typed — a screen reader
+   should read "Home, Services", not "Home slash Services". */
+.breadcrumb__list li + li::before {
+  content: "";
+  width: 12px;
+  height: 1px;
+  background: var(--gold-60);
+}
+
+.breadcrumb a { color: var(--on-dark-soft); }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb [aria-current="page"] { color: var(--on-dark); }
+
+/* ===== BUTTONS ===== */
+.btn {
+  --btn-bg: var(--green-900);
+  --btn-fg: var(--white);
+  --btn-border: var(--green-900);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+  padding: 15px var(--s-4);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--r-btn);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  /* Manrope 600 — confident without shouting. Uppercase at this size needs
+     tracking opened up or the letters knit together. */
+  font-family: var(--font-body);
+  font-size: var(--fs-btn);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-btn);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease),
+    box-shadow var(--t-fast) var(--ease);
+}
+
+.btn:hover {
+  --btn-bg: var(--green-700);
+  --btn-border: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:active { transform: translateY(0); }
+
+/* Outline on light backgrounds */
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--green-900);
+  --btn-border: var(--rule-green);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--green-900);
+  --btn-fg: var(--white);
+  --btn-border: var(--green-900);
+}
+
+/* Outline on dark backgrounds / imagery */
+.btn--outline-light {
+  --btn-bg: transparent;
+  --btn-fg: var(--white);
+  --btn-border: var(--on-dark-faint);
+}
+
+.btn--outline-light:hover {
+  --btn-bg: var(--white);
+  --btn-fg: var(--green-900);
+  --btn-border: var(--white);
+}
+
+/* Solid light button for use on dark bands */
+.btn--light {
+  --btn-bg: var(--white);
+  --btn-fg: var(--green-900);
+  --btn-border: var(--white);
+}
+
+.btn--light:hover {
+  --btn-bg: var(--gold);
+  --btn-fg: var(--green-900);
+  --btn-border: var(--gold);
+}
+
+.btn--sm { padding: 11px var(--s-3); }
+
+/* ===== FOCUS ===== */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Gold on dark imagery can read low — pair with a white ring there */
+.hero :focus-visible,
+.cta-band :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--gold);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.35);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--s-2);
+  top: var(--s-2);
+  z-index: 200;
+  padding: 12px var(--s-3);
+  border-radius: var(--r-btn);
+  background: var(--green-900);
+  color: var(--white);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  transform: translateY(-200%);
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* ===== SCROLL REVEAL (JS toggles .is-visible) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--t-slow) var(--ease),
+    transform var(--t-slow) var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* If JS never runs, content must still be readable */
+.no-js .reveal { opacity: 1; transform: none; }
+
+/* ===== BRAND MARK ===== */
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.brand-mark__roof { stroke: var(--gold); }
+.brand-mark__walls { stroke: currentColor; }
+.brand-mark__door { stroke: currentColor; stroke-width: 2; opacity: 0.55; }
+
+/* ===== HEADER ===== */
+.site-header {
+  /* Colour hooks flipped by .is-scrolled — one switch drives the whole bar */
+  --nav-fg: var(--white);
+  --nav-fg-soft: var(--on-dark);
+  --nav-rule: var(--rule-neutral-inverse);
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  color: var(--nav-fg);
+  background: transparent;
+  transition:
+    background-color var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease);
+}
+
+/* Soft scrim behind the transparent bar. Without it the nav links sit
+   directly on the hero photo and a bright sky drops them below 4.5:1.
+   Fades out once the bar goes solid. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(12, 34, 25, 0.55), rgba(12, 34, 25, 0));
+  pointer-events: none;
+  transition: opacity var(--t-mid) var(--ease);
+}
+
+.site-header.is-scrolled::before,
+.site-header.nav-open::before { opacity: 0; }
+
+.site-header.is-scrolled,
+.site-header.nav-open {
+  --nav-fg: var(--green-900);
+  --nav-fg-soft: var(--ink);
+  --nav-rule: var(--rule-neutral);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.site-header__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  height: var(--header-h);
+  transition: height var(--t-mid) var(--ease);
+}
+
+.site-header.is-scrolled .site-header__inner { height: var(--header-h-scrolled); }
+
+/* ===== BRAND ===== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--nav-fg);
+}
+
+.brand__text { display: grid; }
+
+/* The wordmark stays in the serif — it is identity, not interface. It loses
+   the old 700 (DM Serif has no bold) and takes a hair more tracking and size
+   to keep the presence that weight used to provide. */
+.brand__name {
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: var(--fw-regular);
+  line-height: 1.05;
+  letter-spacing: 0.015em;
+}
+
+.brand__sub {
+  font-size: 0.6875rem;
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--nav-fg-soft);
+}
+
+/* ===== NAV (mobile-first: slide-down panel) ===== */
+.nav {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: var(--s-1);
+  padding: var(--s-3) var(--gutter) var(--s-6);
+  background: var(--white);
+  border-top: 1px solid var(--rule-neutral);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition:
+    opacity var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease),
+    visibility var(--t-fast) linear;
+}
+
+/* Panel follows the header as it shrinks */
+.site-header.is-scrolled .nav { top: var(--header-h-scrolled); }
+
+.nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+.nav__list { display: grid; }
+
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding: var(--s-2) 0;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-neutral);
+}
+
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+/* .is-active is set by the scroll observer on the one-page home; aria-current
+   is authored into the markup of each inner page. Both draw the same rule. */
+.nav__link:hover::after,
+.nav__link.is-active::after,
+.nav__link[aria-current="page"]::after { transform: scaleX(1); }
+
+.nav__link[aria-current="page"] { color: var(--green-900); font-weight: var(--fw-bold); }
+
+.nav__cta { margin-top: var(--s-3); }
+
+/* ===== HAMBURGER ===== */
+.nav-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--nav-rule);
+  border-radius: var(--r-btn);
+  background: transparent;
+  color: var(--nav-fg);
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease);
+}
+
+.nav-toggle__bars {
+  display: grid;
+  gap: 4px;
+  width: 18px;
+}
+
+.nav-toggle__bars span {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* Prevent background scroll while the mobile panel is open */
+body.is-locked { overflow: hidden; }
+
+/* ===== NAV — DESKTOP ===== */
+@media (min-width: 1024px) {
+  .nav {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+  }
+
+  .nav__link {
+    padding: var(--s-1) 0;
+    font-size: var(--fs-nav);
+    font-weight: var(--fw-semibold);
+    color: var(--nav-fg-soft);
+    border-bottom: 0;
+  }
+
+  .nav__link::after { bottom: 0; }
+
+  .nav__cta {
+    margin-top: 0;
+    --btn-bg: transparent;
+    --btn-fg: var(--nav-fg);
+    --btn-border: var(--nav-rule);
+  }
+
+  .nav__cta:hover {
+    --btn-bg: var(--green-900);
+    --btn-fg: var(--white);
+    --btn-border: var(--green-900);
+  }
+
+  .site-header.is-scrolled .nav__cta {
+    --btn-bg: var(--green-900);
+    --btn-fg: var(--white);
+    --btn-border: var(--green-900);
+  }
+
+  .site-header.is-scrolled .nav__cta:hover {
+    --btn-bg: var(--green-700);
+    --btn-border: var(--gold);
+  }
+
+  .nav-toggle { display: none; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: calc(var(--header-h) + var(--s-8)) var(--s-16);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+/* Flat green wash + a deeper foot so the copy holds contrast on any crop */
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    /* Scrim under the copy column. --overlay alone holds up over this photo,
+       but a bright replacement image would drop the lede under 4.5:1; this
+       guarantees the headline block stays legible whatever is swapped in. */
+    linear-gradient(to right, rgba(12, 34, 25, 0.55), rgba(12, 34, 25, 0.12) 62%, rgba(12, 34, 25, 0)),
+    linear-gradient(to top, rgba(12, 34, 25, 0.55), rgba(12, 34, 25, 0) 55%),
+    var(--overlay);
+}
+
+.hero__inner {
+  position: relative;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+}
+
+/* The one place the serif is allowed to run really large. 16ch holds it to
+   three or four words a line, which is what makes a display serif look
+   composed rather than merely big. No font-weight: DM Serif has one. */
+.hero__title {
+  max-width: 16ch;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.hero__rule {
+  /* the signature gold rule, framing the headline */
+  width: 96px;
+  margin-block: var(--s-4) var(--s-3);
+}
+
+.hero__lede {
+  max-width: 58ch;
+  color: var(--on-dark);
+  font-size: var(--fs-body-lg);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+}
+
+/* Stacked on narrow screens, the two buttons read as ragged at their natural
+   widths — match them until there is room to sit side by side. */
+@media (max-width: 479px) {
+  .hero__actions .btn { flex: 1 1 100%; }
+}
+
+/* ===== HERO SCROLL INDICATOR ===== */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: var(--s-4);
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: var(--s-1);
+  color: var(--on-dark-soft);
+  font-size: 0.6875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.hero__scroll:hover { color: var(--white); }
+
+.hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+
+/* A gold tick travelling down the rule — the hairline motif, in motion */
+.hero__scroll-line::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 16px;
+  background: var(--gold);
+  animation: scroll-tick 2.2s var(--ease) infinite;
+}
+
+@keyframes scroll-tick {
+  0%   { transform: translateY(-16px); }
+  100% { transform: translateY(48px); }
+}
+
+@media (min-width: 768px) {
+  .hero__scroll { bottom: var(--s-6); }
+}
+
+/* Short viewports (landscape phones): let the hero collapse rather than
+   pushing the scroll indicator over the copy. */
+@media (max-height: 640px) {
+  .hero { min-height: auto; padding-block: calc(var(--header-h) + var(--s-8)) var(--s-12); }
+  .hero__scroll { display: none; }
+}
+
+/* ===== ICONS ===== */
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ===== ABOUT ===== */
+.about__grid {
+  display: grid;
+  gap: var(--s-6);
+  align-items: center;
+}
+
+.about__lede {
+  margin-top: var(--s-3);
+  font-size: var(--fs-body-lg);
+}
+
+.about__media {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.about__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* Gold hairline frame — the motif applied to imagery */
+.about__media::after {
+  content: "";
+  position: absolute;
+  inset: var(--s-2);
+  border: 1px solid var(--gold-60);
+  border-radius: var(--r-md);
+  pointer-events: none;
+}
+
+/* ===== MISSION / VISION ===== */
+.pillars {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+
+.pillar {
+  padding-left: var(--s-3);
+  border-left: 1px solid var(--gold);
+}
+
+.pillar__term {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--green-700);
+  margin-bottom: var(--s-1);
+}
+
+.pillar__desc { margin: 0; color: var(--ink-soft); }
+
+/* ===== STAT STRIP ===== */
+.stats {
+  display: grid;
+  gap: var(--s-4);
+  margin-top: var(--s-8);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule-neutral);
+  text-align: center;
+}
+
+.stat { display: grid; gap: var(--s-1); }
+
+/* Statistics are the one number set in the serif — they read as editorial
+   claims rather than data, which is the intent. */
+.stat__value {
+  order: -1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.4vw, 3.5rem);
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  letter-spacing: var(--ls-heading);
+  color: var(--green-900);
+}
+
+.stat__label {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 640px) {
+  .pillars { grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .stat + .stat { border-left: 1px solid var(--rule-neutral); }
+}
+
+@media (min-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--s-12);
+  }
+  .stats { margin-top: var(--s-12); }
+}
+
+/* ===== WHY CHOOSE US ===== */
+.why__grid {
+  display: grid;
+  gap: var(--s-6) var(--s-4);
+}
+
+/* Deliberately quieter than the service cards: a rule and an icon, no box.
+   Keeps the page from reading as one long run of identical cards. */
+.feature {
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule-neutral);
+}
+
+.feature__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--s-3);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--green-700);
+  transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+
+.feature:hover .feature__icon {
+  background: var(--green-900);
+  color: var(--gold);
+}
+
+.feature__title { margin-bottom: var(--s-1); font-size: 1.125rem; }
+
+.feature__text { color: var(--ink-soft); }
+
+@media (min-width: 640px) {
+  .why__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .why__grid { grid-template-columns: repeat(3, 1fr); gap: var(--s-8) var(--s-6); }
+}
+
+/* ===== SERVICES =====
+   Flex rather than grid: five cards into a three-up layout leaves an orphan
+   row, and flex-wrap + centring balances it without an empty cell. */
+.services__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-4);
+}
+
+.service {
+  position: relative;
+  flex: 1 1 300px;
+  max-width: 380px;
+  padding: var(--s-6) var(--s-4) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease);
+}
+
+/* Gold hairline drawing across the card top — the signature accent on hover */
+.service::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-mid) var(--ease);
+}
+
+.service:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.service:hover::before { transform: scaleX(1); }
+
+.service__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--s-3);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--green-900);
+  transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
+}
+
+.service:hover .service__icon {
+  background: var(--green-900);
+  color: var(--gold);
+}
+
+.service__title { margin-bottom: var(--s-1); }
+
+.service__text { color: var(--ink-soft); }
+
+/* ===== UTILITIES ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.icon--sm { width: 17px; height: 17px; flex: none; }
+
+/* Text link with a growing gold underline */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  position: relative;
+  padding-bottom: 3px;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--green-900);
+}
+
+.link-arrow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-mid) var(--ease);
+}
+
+.link-arrow span[aria-hidden] {
+  transition: transform var(--t-mid) var(--ease);
+}
+
+.link-arrow:hover::after,
+.property:hover .link-arrow::after { transform: scaleX(1); }
+
+.link-arrow:hover span[aria-hidden],
+.property:hover .link-arrow span[aria-hidden] { transform: translateX(4px); }
+
+/* ===== FEATURED PROPERTIES ===== */
+.properties__grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+.property {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--r-md);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    transform var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease);
+}
+
+.property:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.property__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.property__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.property:hover .property__media img { transform: scale(1.06); }
+
+.property__tag {
+  position: absolute;
+  top: var(--s-2);
+  left: var(--s-2);
+  padding: 6px 12px;
+  border: 1px solid var(--gold-60);
+  border-radius: 6px;
+  background: var(--green-scrim);
+  color: var(--white);
+  font-size: 0.6875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.property__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--s-3);
+}
+
+/* Manrope, not the serif. A price is data a buyer compares across cards, and
+   the sans keeps the digits even and scannable; lining figures in a display
+   serif wobble at this size. tnum locks the digit widths so ₦180,000,000 and
+   ₦1,200,000,000 align down the column. */
+.property__price {
+  font-family: var(--font-body);
+  font-size: 1.4375rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+  color: var(--green-900);
+}
+
+.property__title {
+  margin-top: 4px;
+  font-size: 1.0625rem;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+.property__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--s-1);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+.property__location .icon { color: var(--green-700); }
+
+.property__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-2);
+  margin-block: var(--s-3);
+  padding-block: var(--s-2);
+  border-block: 1px solid var(--rule-neutral);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  color: var(--ink-soft);
+}
+
+.property__meta li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.property__meta .icon { color: var(--green-700); }
+
+/* Push the CTA to the card foot so mixed-length titles stay aligned */
+.property__body .link-arrow { margin-top: auto; align-self: flex-start; }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials__grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+}
+
+.testimonials__grid > li { display: flex; }
+
+.quote {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0;
+  padding: var(--s-6) var(--s-4) var(--s-4);
+  border: 1px solid var(--rule-neutral);
+  border-radius: var(--r-md);
+  background: var(--white);
+  transition:
+    transform var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    border-color var(--t-mid) var(--ease);
+}
+
+.quote:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+/* Gold quote mark motif */
+.quote::before {
+  content: "\201C";
+  position: absolute;
+  top: 10px;
+  left: var(--s-4);
+  font-family: var(--font-display);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.quote__body {
+  flex: 1;
+  margin: 0;
+}
+
+/* Testimonials are editorial statements, so they keep the serif — and DM Serif
+   Display ships a true italic, which is why the italic axis is loaded. */
+.quote__body p {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-style: italic;
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.quote__author {
+  display: grid;
+  gap: 2px;
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--gold);
+}
+
+.quote__name {
+  font-weight: var(--fw-semibold);
+  color: var(--green-900);
+}
+
+.quote__role {
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+/* ===== CTA BAND ===== */
+.cta-band {
+  position: relative;
+  padding-block: var(--section-y);
+  background:
+    radial-gradient(120% 120% at 50% 0%, rgba(45, 106, 79, 0.85), rgba(0, 0, 0, 0) 60%),
+    linear-gradient(135deg, var(--green-900), var(--green-950));
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* Hairline frame, echoing the about image treatment */
+.cta-band::after {
+  content: "";
+  position: absolute;
+  inset: var(--s-3);
+  border: 1px solid var(--gold-28);
+  border-radius: var(--r-lg);
+  pointer-events: none;
+}
+
+.cta-band__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.cta-band__title {
+  max-width: 18ch;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.cta-band__text {
+  margin-bottom: var(--s-6);
+  font-size: var(--fs-body-lg);
+  color: var(--on-dark);
+}
+
+@media (min-width: 768px) {
+  .cta-band::after { inset: var(--s-4); }
+}
+
+/* ===== CONTACT ===== */
+.contact__grid {
+  display: grid;
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.contact__list { display: grid; gap: var(--s-4); }
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+}
+
+.contact-item__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--green-700);
+}
+
+.contact-item__title {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+
+.contact-item__body { color: var(--ink); line-height: 1.6; }
+
+.contact-item__body a {
+  transition: color var(--t-fast) var(--ease);
+  border-bottom: 1px solid transparent;
+}
+
+.contact-item__body a:hover {
+  color: var(--green-700);
+  border-bottom-color: var(--gold);
+}
+
+/* The map is a focusable third-party iframe; Chrome gives it :focus but not
+   :focus-visible, so the global ring never lands. Ring the wrapper instead. */
+.contact__map:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.contact__map {
+  margin-top: var(--s-4);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact__map iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  /* Google's default tiles run warm; a light desaturation settles the map
+     into the palette without hurting legibility. */
+  filter: saturate(0.85);
+}
+
+/* ===== FORM ===== */
+.contact__form-wrap {
+  padding: var(--s-4);
+  border: 1px solid var(--rule-neutral);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.contact__form-title { margin-bottom: var(--s-3); }
+
+.form { display: grid; gap: var(--s-3); }
+
+.field { display: grid; gap: 6px; }
+
+.field label {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
+  color: var(--ink);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 13px var(--s-2);
+  border: 1px solid var(--rule-neutral);
+  border-radius: var(--r-btn);
+  background: var(--white);
+  color: var(--ink);
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+.field textarea { resize: vertical; min-height: 120px; }
+
+.field input:hover,
+.field textarea:hover { border-color: var(--rule-neutral-strong); }
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--green-700);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.14);
+}
+
+/* Keyboard focus still gets the gold ring for consistency with the rest */
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.field__error {
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  /* Dark red for AA contrast on the light surface */
+  color: var(--danger);
+}
+
+.field.is-invalid input,
+.field.is-invalid textarea { border-color: var(--danger); }
+
+.form__submit { justify-self: start; }
+
+.form__status {
+  margin: 0;
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+}
+
+.form__status:empty { display: none; }
+
+.form__status.is-success {
+  padding: 12px var(--s-2);
+  border-left: 2px solid var(--gold);
+  background: var(--white);
+  color: var(--green-900);
+}
+
+.form__status.is-error {
+  padding: 12px var(--s-2);
+  border-left: 2px solid var(--danger);
+  background: var(--white);
+  color: var(--danger);
+}
+
+/* The failure message hands over the phone number and WhatsApp link, so those
+   have to read as links rather than blend into the error text. */
+.form__status a {
+  color: inherit;
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (min-width: 900px) {
+  .contact__grid { grid-template-columns: 1fr 1fr; gap: var(--s-8); }
+  .contact__form-wrap { padding: var(--s-6); }
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  padding-block: var(--s-12) var(--s-4);
+  background: var(--green-900);
+  color: var(--on-dark-soft);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--s-6);
+}
+
+.brand--footer { color: var(--white); margin-bottom: var(--s-2); }
+
+.brand--footer .brand__sub { color: var(--on-dark-soft); }
+
+.site-footer__tagline {
+  max-width: 34ch;
+  color: var(--on-dark-soft);
+}
+
+.site-footer__heading {
+  margin-bottom: var(--s-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.site-footer__links { display: grid; gap: 10px; }
+
+.site-footer__links a {
+  position: relative;
+  font-size: var(--fs-meta);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.site-footer__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.site-footer__links a:hover { color: var(--white); }
+.site-footer__links a:hover::after { transform: scaleX(1); }
+
+.site-footer__address {
+  margin-top: var(--s-2);
+  font-size: var(--fs-meta);
+  font-style: normal;
+  line-height: 1.6;
+}
+
+/* ===== SOCIALS ===== */
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: var(--s-3);
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--rule-neutral-inverse);
+  border-radius: var(--r-sm);
+  color: var(--on-dark-soft);
+  transition:
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    background-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.socials a:hover {
+  color: var(--green-900);
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ===== FOOTER BAR ===== */
+.site-footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-1) var(--s-3);
+  margin-top: var(--s-8);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule-neutral-inverse);
+  font-size: var(--fs-meta);
+}
+
+.site-footer__bar p { margin: 0; max-width: none; }
+
+.site-footer__motto {
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--on-dark-faint);
+}
+
+@media (min-width: 640px) {
+  .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__grid {
+    grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+    gap: var(--s-6);
+  }
+}
+
+/* ===== PAGE LOAD OVERLAY =====
+   Brief and quiet: the mark settles, a gold hairline draws beneath it, and the
+   whole thing is gone inside a second. Not a spinner. */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  background: var(--white);
+  transition: opacity var(--t-slow) var(--ease), visibility var(--t-slow) linear;
+  /* CSS-only fallback dismissal: if script.js never loads, the overlay must
+     not sit on top of the site forever. JS just gets there sooner. */
+  animation: preloader-out var(--t-slow) var(--ease) 1100ms forwards;
+}
+
+@keyframes preloader-out {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.preloader.is-done {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader[hidden] { display: none; }
+
+.preloader__mark {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-2);
+  color: var(--green-900);
+}
+
+.preloader__mark .brand-mark {
+  width: 56px;
+  height: 56px;
+  animation: mark-settle 700ms var(--ease) both;
+}
+
+.preloader__rule {
+  width: 120px;
+  height: 1px;
+  background: var(--gold);
+  transform-origin: center;
+  animation: rule-draw 700ms var(--ease) 120ms both;
+}
+
+@keyframes mark-settle {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes rule-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ===== FAQ =====
+   Native <details>/<summary>. The marker is replaced with a drawn plus/minus
+   so it can inherit the palette; `list-style: none` + ::-webkit-details-marker
+   covers both the modern and the WebKit-legacy marker. */
+.faq__list {
+  max-width: 860px;
+  margin-inline: auto;
+  border-top: 1px solid var(--rule-neutral);
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--rule-neutral);
+}
+
+.faq__q {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  padding: var(--s-3) 0;
+  padding-right: var(--s-4);
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  /* Manrope, not the serif. These sit at ~18px and there are eight of them in
+     a column — the serif's thin strokes go weak at that size, and questions
+     are something you scan, not something you read aloud. */
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: var(--fw-semibold);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: var(--green-900);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.faq__q::-webkit-details-marker { display: none; }
+
+.faq__q:hover { color: var(--green-700); }
+
+/* plus / minus indicator */
+.faq__q::after,
+.faq__q::before {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: calc(var(--s-3) + 0.7em);
+  width: 14px;
+  height: 1.5px;
+  background: var(--gold);
+  transition: transform var(--t-mid) var(--ease), opacity var(--t-mid) var(--ease);
+}
+
+.faq__q::before { transform: rotate(90deg); }
+
+.faq__item[open] .faq__q::before { transform: rotate(0deg); opacity: 0; }
+
+.faq__a {
+  padding-bottom: var(--s-3);
+  padding-right: var(--s-4);
+}
+
+.faq__a p { color: var(--ink-soft); }
+
+/* Open-state reveal. Height can't be transitioned from auto, so the content
+   fades and lifts instead — cheap, and it never janks. */
+.faq__item[open] .faq__a {
+  animation: faq-open var(--t-mid) var(--ease) both;
+}
+
+@keyframes faq-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (min-width: 768px) {
+  .faq__q { font-size: 1.25rem; }
+}
+
+/* ===== PROPERTY LIGHTBOX ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: var(--s-2);
+}
+
+.lightbox[hidden] { display: none; }
+
+/* A class-level `display` beats the UA's [hidden] rule, so every element the
+   script toggles with .hidden needs this said explicitly. */
+.lightbox__thumbs[hidden],
+.lightbox__arrow[hidden],
+.lightbox__tag[hidden] { display: none; }
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 26, 19, 0.72);
+  opacity: 0;
+  transition: opacity var(--t-mid) var(--ease);
+}
+
+.lightbox.is-open .lightbox__backdrop { opacity: 1; }
+
+.lightbox__panel {
+  position: relative;
+  width: min(100%, 960px);
+  max-height: calc(100vh - var(--s-4));
+  max-height: calc(100svh - var(--s-4));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--r-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  transition: opacity var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
+}
+
+.lightbox.is-open .lightbox__panel {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== LIGHTBOX CLOSE ===== */
+.lightbox__close {
+  position: absolute;
+  top: var(--s-2);
+  right: var(--s-2);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--rule-neutral-inverse);
+  border-radius: var(--r-btn);
+  background: var(--green-scrim);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.lightbox__close:hover { background: var(--green-900); transform: scale(1.05); }
+
+.lightbox__close svg { width: 20px; height: 20px; }
+
+/* ===== LIGHTBOX MEDIA ===== */
+.lightbox__media {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  overflow: hidden;
+}
+
+.lightbox__hero {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.lightbox__tag {
+  position: absolute;
+  top: var(--s-2);
+  left: var(--s-2);
+  padding: 6px 12px;
+  border: 1px solid var(--gold-60);
+  border-radius: 6px;
+  background: var(--green-scrim);
+  color: var(--white);
+  font-size: 0.6875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lightbox__counter {
+  position: absolute;
+  right: var(--s-2);
+  bottom: var(--s-2);
+  margin: 0;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--green-scrim);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== LIGHTBOX ARROWS ===== */
+.lightbox__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--rule-neutral-inverse);
+  border-radius: 999px;
+  background: var(--green-scrim);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color var(--t-fast) var(--ease);
+}
+
+.lightbox__arrow:hover { background: var(--green-900); }
+
+.lightbox__arrow svg { width: 22px; height: 22px; }
+
+.lightbox__arrow--prev { left: var(--s-1); }
+.lightbox__arrow--next { right: var(--s-1); }
+
+/* ===== LIGHTBOX THUMBNAILS ===== */
+.lightbox__thumbs {
+  display: flex;
+  gap: var(--s-1);
+  padding: var(--s-2) var(--s-3) 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+.lightbox__thumb {
+  flex: none;
+  width: 84px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: opacity var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+
+.lightbox__thumb img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.lightbox__thumb:hover { opacity: 1; }
+
+.lightbox__thumb[aria-current="true"] {
+  opacity: 1;
+  border-color: var(--gold);
+}
+
+/* ===== LIGHTBOX BODY ===== */
+.lightbox__body { padding: var(--s-3); }
+
+.lightbox__price {
+  font-family: var(--font-body);
+  font-size: 1.6875rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+  color: var(--green-900);
+}
+
+/* Manrope, mirroring .property__title. The dialog shows the same information
+   as the card that opened it, so it keeps the card's hierarchy — price
+   dominant, title secondary. Setting this in the serif would invert that and
+   make the h2 read lighter than the price sitting above it. */
+.lightbox__title {
+  margin-top: 4px;
+  font-family: var(--font-body);
+  font-size: 1.375rem;
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.lightbox__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--s-1);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+.lightbox__location .icon { color: var(--green-700); }
+
+.lightbox__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-3);
+  margin-block: var(--s-3);
+  padding-block: var(--s-2);
+  border-block: 1px solid var(--rule-neutral);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  color: var(--ink-soft);
+}
+
+.lightbox__meta li { display: flex; align-items: center; gap: 6px; }
+
+.lightbox__meta .icon { color: var(--green-700); }
+
+.lightbox__desc { color: var(--ink-soft); }
+
+/* Sticky to the foot of the scrolling panel. Capping the hero alone can't
+   guarantee the CTA is on screen — a long description or a short window will
+   still push it under. Sticky makes it unconditional. */
+.lightbox__actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+  padding-top: var(--s-2);
+  padding-bottom: var(--s-2);
+  background: var(--white);
+  border-top: 1px solid var(--rule-neutral);
+}
+
+/* Ink on WhatsApp green, not white: white on #25D366 is 1.98:1 and fails AA
+   outright. --green-900 on the same green is 5.5:1, keeps the button instantly
+   recognisable, and ties it to the palette. Hover holds the background (so
+   contrast can't drop) and signals via the border and the .btn lift instead. */
+.lightbox__wa {
+  --btn-bg: var(--whatsapp);
+  --btn-fg: var(--green-900);
+  --btn-border: var(--whatsapp);
+}
+
+.lightbox__wa:hover {
+  --btn-bg: var(--whatsapp);
+  --btn-fg: var(--green-900);
+  --btn-border: var(--green-900);
+}
+
+.lightbox__wa-icon { width: 18px; height: 18px; }
+
+.lightbox__note {
+  margin-top: var(--s-3);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 768px) {
+  .lightbox { padding: var(--s-4); }
+  .lightbox__body { padding: var(--s-4); }
+
+  /* On a wide screen a 3:2 hero pushes the price and the enquiry buttons below
+     the panel fold. Cap it against the viewport so the CTA is always in view
+     without scrolling — the photo is the hook, the button is the point. */
+  .lightbox__hero {
+    aspect-ratio: 16 / 9;
+    max-height: 42svh;
+  }
+  .lightbox__thumbs { padding: var(--s-2) var(--s-4) 0; }
+  .lightbox__arrow--prev { left: var(--s-2); }
+  .lightbox__arrow--next { right: var(--s-2); }
+  .lightbox__actions .btn { flex: 0 0 auto; }
+}
+
+/* Below 480px the two dialog buttons stack; match their widths */
+@media (max-width: 479px) {
+  .lightbox__actions .btn { flex: 1 1 100%; }
+}
+
+/* ===== FLOATING WHATSAPP =====
+   Sits bottom-left so it never collides with the back-to-top button. Uses the
+   WhatsApp brand green rather than the palette: this is a recognition
+   affordance, and people scan for that exact colour. A gold hairline ring ties
+   it back to the brand. */
+.wa-float {
+  position: fixed;
+  left: var(--s-2);
+  bottom: var(--s-2);
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--gold-60);
+  border-radius: 999px;
+  background: var(--whatsapp);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+  transition:
+    transform var(--t-mid) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    background-color var(--t-fast) var(--ease);
+}
+
+.wa-float:hover {
+  background: var(--whatsapp-dark);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: var(--shadow-lg);
+}
+
+.wa-float__icon {
+  width: 30px;
+  height: 30px;
+  /* above the pulse ring */
+  position: relative;
+  z-index: 1;
+}
+
+/* Slow outward pulse — a nudge, not a nag */
+.wa-float__pulse {
+  position: absolute;
+  inset: -1px;
+  border-radius: 999px;
+  background: var(--whatsapp);
+  opacity: 0.55;
+  animation: wa-pulse 2.6s var(--ease) infinite;
+  pointer-events: none;
+}
+
+@keyframes wa-pulse {
+  0%   { transform: scale(1); opacity: 0.5; }
+  70%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ===== WHATSAPP TOOLTIP ===== */
+.wa-float__tip {
+  position: absolute;
+  left: calc(100% + 12px);
+  white-space: nowrap;
+  padding: 9px 14px;
+  border-radius: var(--r-sm);
+  background: var(--green-900);
+  color: var(--white);
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-6px);
+  transition:
+    opacity var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease),
+    visibility var(--t-fast) linear;
+}
+
+/* Little pointer back to the button */
+.wa-float__tip::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-right-color: var(--green-900);
+  transform: translateY(-50%);
+}
+
+.wa-float:hover .wa-float__tip,
+.wa-float:focus-visible .wa-float__tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* Touch devices have no hover, and the tooltip would only ever flash on tap —
+   hide it there and let the aria-label carry the meaning. */
+@media (hover: none) {
+  .wa-float__tip { display: none; }
+}
+
+@media (min-width: 768px) {
+  .wa-float {
+    left: var(--s-4);
+    bottom: var(--s-4);
+    width: 60px;
+    height: 60px;
+  }
+  .wa-float__icon { width: 32px; height: 32px; }
+}
+
+/* ===== BACK TO TOP ===== */
+.to-top {
+  position: fixed;
+  right: var(--s-2);
+  bottom: var(--s-2);
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--gold-60);
+  border-radius: var(--r-btn);
+  background: var(--green-900);
+  color: var(--white);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity var(--t-mid) var(--ease),
+    transform var(--t-mid) var(--ease),
+    visibility var(--t-mid) linear,
+    background-color var(--t-fast) var(--ease);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover { background: var(--green-700); }
+
+.to-top svg { width: 20px; height: 20px; }
+
+@media (min-width: 768px) {
+  .to-top { right: var(--s-4); bottom: var(--s-4); }
+}
+
+/* =========================================================================
+   DETAIL-PAGE COMPONENTS
+   Everything below exists for the inner pages. The home page carries teasers
+   built from the components above; these are the pieces that only earn their
+   space once a section has a page of its own.
+   ========================================================================= */
+
+/* ===== PROSE ===== */
+.prose {
+  max-width: 64ch;
+  color: var(--ink-soft);
+}
+
+.prose > * + * { margin-top: var(--s-3); }
+
+.prose strong { color: var(--ink); font-weight: var(--fw-semibold); }
+
+.prose--lead { font-size: var(--fs-body-lg); }
+
+/* ===== SPLIT (body + media) ===== */
+.split {
+  display: grid;
+  gap: var(--s-6);
+  align-items: center;
+}
+
+.split__media {
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.split__media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (min-width: 1024px) {
+  .split { grid-template-columns: 1fr 1fr; gap: var(--s-12); }
+  .split--reverse .split__media { order: -1; }
+  .split__media img { aspect-ratio: 5 / 6; }
+}
+
+/* ===== CHECKLIST =====
+   The gold tick is the hairline motif doing duty as a bullet. It is drawn in
+   CSS and hidden from assistive tech — the list semantics already say "list". */
+.checklist {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.checklist li {
+  position: relative;
+  padding-left: var(--s-4);
+  color: var(--ink-soft);
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 10px;
+  height: 5px;
+  border-left: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+  .checklist--two { grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-6); }
+}
+
+/* ===== SERVICE DETAIL BLOCK ===== */
+.svc-list {
+  display: grid;
+  gap: var(--s-8);
+}
+
+.svc {
+  display: grid;
+  gap: var(--s-4);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule-neutral);
+}
+
+/* First block sits directly under the section head, which already provides
+   the separation — a rule there would read as a stray line. */
+.svc:first-child { padding-top: 0; border-top: 0; }
+
+.svc__rail {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+/* Green, not gold. The numeral is real text carrying sequence, and gold on
+   white sits at roughly 2:1 — below AA. The gold stays on the hairline above,
+   where it is decorative and contrast rules do not apply (CLAUDE.md §4). */
+.svc__num {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--green-700);
+}
+
+.svc__title { margin-bottom: var(--s-2); }
+
+.svc__lede {
+  font-size: var(--fs-body-lg);
+  color: var(--ink);
+}
+
+.svc__sub {
+  margin: var(--s-4) 0 var(--s-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+.svc__for {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--rule-neutral);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+.svc__for strong { color: var(--green-900); }
+
+@media (min-width: 1024px) {
+  .svc { grid-template-columns: 200px 1fr; gap: var(--s-8); }
+
+  /* Rail stacks and pins to the top on wide screens so the number and icon
+     read as a margin note against the body copy. */
+  .svc__rail {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-2);
+    position: sticky;
+    top: calc(var(--header-h-scrolled) + var(--s-4));
+    align-self: start;
+  }
+
+  .svc__num { font-size: 2.5rem; }
+}
+
+/* ===== STEPS ===== */
+.steps {
+  display: grid;
+  gap: var(--s-6);
+  counter-reset: step;
+}
+
+/* The gold hairline is the accent here — decorative, so contrast rules do not
+   bind it. The numeral itself is set in green so it clears AA on white. */
+.step {
+  position: relative;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--gold);
+  counter-increment: step;
+}
+
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--s-2);
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: var(--fw-regular);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--green-700);
+}
+
+.step__title { margin-bottom: var(--s-1); font-size: 1.0625rem; }
+
+.step__text { font-size: var(--fs-meta); color: var(--ink-soft); }
+
+@media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .steps { grid-template-columns: repeat(4, 1fr); gap: var(--s-4); } }
+
+/* ===== CALLOUT ===== */
+.callout {
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  border-left: 2px solid var(--gold);
+  background: var(--surface);
+}
+
+.callout__title {
+  margin-bottom: var(--s-1);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  color: var(--green-900);
+}
+
+.callout p { font-size: var(--fs-meta); color: var(--ink-soft); }
+
+.callout p + p { margin-top: var(--s-2); }
+
+/* A callout closing out a list needs air above it; keeping the rule here
+   rather than on the element means no page has to carry an inline style. */
+.checklist + .callout,
+.prose + .callout,
+.steps + .callout { margin-top: var(--s-6); }
+
+.callout + .callout { margin-top: var(--s-3); }
+
+.section--surface .callout { background: var(--white); }
+
+/* ===== TILE GRID (areas, title types) ===== */
+.tile-grid {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.tile {
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--rule-neutral);
+  background: var(--white);
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+
+.tile:hover {
+  border-color: var(--gold-28);
+  box-shadow: var(--shadow-sm);
+}
+
+.tile__title {
+  margin-bottom: var(--s-1);
+  font-size: 1.0625rem;
+}
+
+.tile__text { font-size: var(--fs-meta); color: var(--ink-soft); }
+
+@media (min-width: 640px) { .tile-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .tile-grid--three { grid-template-columns: repeat(3, 1fr); } }
+
+/* ===== EXPANDED REASON (why-choose-us detail) ===== */
+.feature__proof {
+  margin-top: var(--s-2);
+  font-size: var(--fs-meta);
+  font-style: italic;
+  color: var(--green-700);
+}
+
+/* ===== LEAD QUOTE ===== */
+.quote--lead {
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.quote--lead .quote__body p {
+  font-family: var(--font-display);
+  font-size: var(--fs-quote);
+  line-height: 1.28;
+  letter-spacing: var(--ls-heading);
+  color: var(--ink);
+}
+
+/* ===== FAQ GROUPS ===== */
+.faq__group + .faq__group { margin-top: var(--s-8); }
+
+.faq__group-title {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+.faq__group-title::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  flex: none;
+}
+
+/* ===== CONTACT TEASER (home) ===== */
+.contact-teaser {
+  display: grid;
+  gap: var(--s-6);
+  align-items: center;
+}
+
+.contact-teaser .contact__list { margin-bottom: var(--s-6); }
+
+/* The map is a grid cell here, not a block following the details list, so it
+   sheds the top margin it carries on the contact page. */
+.contact-teaser .contact__map { margin-top: 0; }
+
+@media (min-width: 1024px) {
+  .contact-teaser { grid-template-columns: 1fr 1fr; gap: var(--s-12); }
+}
+
+/* Teaser link closing the About block on the home page. It sits inside the
+   body column rather than on its own row, so it takes its own spacing. */
+.about__more { margin-top: var(--s-4); }
+
+/* ===== NEXT STEPS (contact page) ===== */
+.next-steps {
+  margin-top: var(--s-6);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule-neutral);
+}
+
+/* ===== REDUCED MOTION =====
+   Declared early and re-asserted at the end of the file. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal { opacity: 1 !important; transform: none !important; }
+
+  /* Skip the load overlay entirely rather than flashing it */
+  .preloader { display: none !important; }
+
+  /* Static, not travelling */
+  .hero__scroll-line::after { display: none; }
+
+  /* Killing the duration would freeze the pulse ring mid-halo — remove it */
+  .wa-float__pulse { display: none; }
+}

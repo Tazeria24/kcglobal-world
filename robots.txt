@@ -1,0 +1,10 @@
+# KCGLOBAL World Enterprises
+# TODO(deploy): replace the Sitemap host with the live domain before launch.
+
+User-agent: *
+Allow: /
+
+# Specs are not part of the site
+Disallow: /docs/
+
+Sitemap: https://kcglobalworld.com/sitemap.xml

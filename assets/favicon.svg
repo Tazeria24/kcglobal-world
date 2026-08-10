@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- Favicon: solid green tile so the mark holds up at 16px. -->
+  <rect width="48" height="48" rx="10" fill="#1B4332"/>
+  <g fill="none" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M9 24 L24 11 L39 24" stroke="#D4AF37"/>
+    <path d="M14 27 V38 H34 V27" stroke="#FFFFFF"/>
+  </g>
+</svg>

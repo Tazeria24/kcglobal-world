@@ -1,0 +1,56 @@
+# =============================================================================
+# KCGLOBAL World Enterprises — Netlify configuration
+# No build step: the repo root is published as-is.
+# =============================================================================
+
+[build]
+  publish = "."
+  command = ""
+
+# The specs are not part of the shipped site.
+[[redirects]]
+  from = "/docs/*"
+  to = "/"
+  status = 404
+
+# ----------------------------------------------------------------------------
+# Security headers
+# ----------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+    # 'unsafe-inline' is required for scripts because the page carries two
+    # inline blocks (the no-js flag and the JSON-LD), and for styles because
+    # scroll-reveal stagger is applied via element style. Sources are still
+    # locked to the specific hosts actually in use.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'"
+
+# ----------------------------------------------------------------------------
+# Caching. Static assets are immutable-ish; the HTML must always revalidate so
+# content edits appear immediately.
+# ----------------------------------------------------------------------------
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
