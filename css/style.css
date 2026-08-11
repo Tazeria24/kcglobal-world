@@ -87,7 +87,7 @@
   /* Line height. DM Serif Display sets far tighter than Playfair did at the
      same size, so display leading drops into the 1.0–1.16 band; anything
      looser opens gaps the eye reads as broken lines. Body sits at 1.65. */
-  --lh-display: 1.02;
+  --lh-display: 1.06;
   --lh-tight: 1.08;
   --lh-heading: 1.16;
   --lh-snug: 1.35;
@@ -689,7 +689,14 @@ p { max-width: 68ch; }
 .nav__link.is-active::after,
 .nav__link[aria-current="page"]::after { transform: scaleX(1); }
 
-.nav__link[aria-current="page"] { color: var(--green-900); font-weight: var(--fw-bold); }
+/* Must follow the header's colour hooks, not a fixed colour. Hard-coding
+   --green-900 here made the current-page link near-invisible over the hero
+   image, where the bar is transparent and everything else is white; it only
+   read correctly once the header had scrolled to its solid state. */
+.nav__link[aria-current="page"] {
+  color: var(--nav-fg);
+  font-weight: var(--fw-bold);
+}
 
 .nav__cta { margin-top: var(--s-3); }
 
@@ -833,7 +840,9 @@ body.is-locked { overflow: hidden; }
    three or four words a line, which is what makes a display serif look
    composed rather than merely big. No font-weight: DM Serif has one. */
 .hero__title {
-  max-width: 16ch;
+  /* 16ch forced a four-line break that stranded "Through" alone on line two.
+     20ch gives text-wrap: balance enough room to find an even rag. */
+  max-width: 20ch;
   font-size: var(--fs-display);
   line-height: var(--lh-display);
   letter-spacing: var(--ls-display);
