@@ -1,4 +1,4 @@
-# KCGLOBAL World Enterprises — Website
+# KCGLOBAL Worldwide — Website
 
 Premium multi-page marketing site for a Lagos luxury real-estate firm. Hand-built with HTML, CSS, and vanilla JS — no frameworks, no build step.
 
@@ -40,6 +40,6 @@ Replace everything marked **[SAMPLE — client review]** in `docs/CONTENT.md` (p
 Also: confirm the email and social handles, swap the Google Maps embed for the client's exact pin, drop the real logo into `assets/`, replace the placeholder domain in every `canonical` / `og:url` / `sitemap.xml` / `robots.txt`, and verify the Netlify form endpoint receives submissions.
 
 ## Brand
-- **KCGLOBAL World Enterprises** — *We Set The Pace In Real Estate*
+- **KCGLOBAL Worldwide** — *We Set The Pace In Real Estate*
 - No. 5 Oteyi Garden Estate Road, Abule-Ado, Lagos State, Nigeria
 - 08030555002 · 08182341691

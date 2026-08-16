@@ -1,8 +1,8 @@
-# PRD — KCGLOBAL WORLD ENTERPRISES Landing Page
+# PRD — KCGLOBAL WORLDWIDE Landing Page
 
 ## Overview
 
-A one-page marketing site that positions KCGLOBAL WORLD ENTERPRISES as a premium, trustworthy real-estate firm in Lagos and drives consultation bookings. Audience: high-net-worth property buyers, landowners, and developers in Lagos. Primary conversion: **Book Consultation** (and secondary: phone call / contact form).
+A one-page marketing site that positions KCGLOBAL WORLDWIDE as a premium, trustworthy real-estate firm in Lagos and drives consultation bookings. Audience: high-net-worth property buyers, landowners, and developers in Lagos. Primary conversion: **Book Consultation** (and secondary: phone call / contact form).
 
 ## Success criteria
 

@@ -1,4 +1,4 @@
-# CLAUDE.md — KCGLOBAL WORLD ENTERPRISES Website
+# CLAUDE.md — KCGLOBAL WORLDWIDE Website
 
 > This is the operating manual for building this site. Read it fully before writing any code, and re-read the relevant section before each task. The detailed specs live in `/docs`. This file is the source of truth for **rules**; the docs are the source of truth for **content and design tokens**.
 
@@ -10,7 +10,7 @@ A premium, multi-page marketing website for a Lagos real-estate firm. It must re
 
 > **Architecture change (2026-08-10):** this began as a single page and is now seven pages — a home page of condensed teasers plus a dedicated page per section. The home page sells; the inner pages convince. Sections below have been updated to match; where a rule still says "the page", read "each page".
 
-- **Client:** KCGLOBAL WORLD ENTERPRISES
+- **Client:** KCGLOBAL WORLDWIDE
 - **Tagline:** *We Set The Pace In Real Estate*
 - **Location:** No. 5 Oteyi Garden Estate Road, Abule-Ado, Lagos State, Nigeria
 - **The one job of this page:** make a high-net-worth Lagos property buyer or landowner trust this firm enough to book a consultation.

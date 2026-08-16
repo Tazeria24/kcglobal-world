@@ -3,9 +3,32 @@
 Working brief for the Framer template rebrand, captured so it survives a Claude Code
 restart. The connector is configured in `.mcp.json` (git-ignored — it carries a secret).
 
-**Status:** blocked on the `unframer` MCP server loading. MCP servers register at
-startup, so Claude Code must be restarted and the project server approved before any
-of this can be executed.
+**Status (2026-08-16):** largely applied. Done — colour styles remapped, all six
+listings replaced (details, ₦ prices, sq m, images), all five CMS services replaced
+and the surplus deleted, plus the home, about, contact and services pages. Team and
+Blog hidden. The "30+ Award Wins" stat was deleted rather than invented.
+
+**Not doable through this MCP.** Four component internals reject every write:
+
+| Item | Where it lives | Error |
+|---|---|---|
+| `$` → `₦`, `sq. ft.` → `sqm` | Property Card component | won't open |
+| Logo wordmark, nav links | Nav component | won't open |
+| The 3 testimonials | Testimonial Section component | won't open |
+| The 8 FAQ Q&As | FAQ instance props | writes rejected |
+
+Text *inside* a component edits fine; component **instance props** and some component
+definitions do not. Retried across three separate sessions, including after a
+read-only lock cleared, so this is a tool limitation and not transient. These need
+editing by hand in the Framer UI.
+
+Also outstanding: the nav bar background is hard-coded `rgba(55, 47, 43, 0.5)` (old
+template brown) rather than referencing the colour style, so the palette change did
+not reach it — should be `rgba(27, 67, 50, 0.5)`. The footer is a project-level
+overlay and never appeared in any page's XML.
+
+**Brand name:** the client renamed from "KCGLOBAL World Enterprises" to
+**"KCGLOBAL Worldwide"** on 2026-08-16. Applied across the HTML site and docs.
 
 ---
 
@@ -25,7 +48,7 @@ interactions stay exactly as the template ships them.
 | Body copy, headings, labels | Replace with KCGLOBAL copy — **length-matched** (see below) |
 | Property listing images | **Replace** with KCGLOBAL's listing photos |
 | Property details (price, location, beds, baths, area, type) | **Replace** with KCGLOBAL's six listings |
-| Logo / wordmark | Replace with KCGLOBAL World Enterprises |
+| Logo / wordmark | Replace with KCGLOBAL Worldwide |
 | Phone, email, address | Replace with the exact values below |
 | Social links | Repoint to KCGLOBAL (placeholders until client confirms handles) |
 | Nav / footer / CTA links | Repoint to KCGLOBAL pages |

@@ -1,4 +1,4 @@
-# KCGLOBAL World Enterprises
+# KCGLOBAL Worldwide
 # TODO(deploy): replace the Sitemap host with the live domain before launch.
 
 User-agent: *

@@ -26,7 +26,7 @@ The site is seven pages, not one. Each section below feeds both the home-page te
 
 ## Brand
 
-- **Name:** KCGLOBAL WORLD ENTERPRISES
+- **Name:** KCGLOBAL WORLDWIDE
 - **Tagline:** We Set The Pace In Real Estate
 - **Business lines:** Property Management · Building Contractor · Property Development · Lease & Let · Sales of Landed Properties
 
@@ -43,7 +43,7 @@ The site is seven pages, not one. Each section below feeds both the home-page te
 
 - **Eyebrow:** We Set The Pace In Real Estate
 - **Headline:** Building Trust Through Exceptional Real Estate Solutions
-- **Subheadline:** From property management to landed sales and development, KCGLOBAL World Enterprises delivers reliable, professional real-estate services across Lagos — built on transparency and lasting value.
+- **Subheadline:** From property management to landed sales and development, KCGLOBAL Worldwide delivers reliable, professional real-estate services across Lagos — built on transparency and lasting value.
 - **Primary button:** View Services
 - **Secondary button:** Contact Us
 
@@ -51,7 +51,7 @@ The site is seven pages, not one. Each section below feeds both the home-page te
 
 ## About
 
-**Overview:** KCGLOBAL World Enterprises is a Lagos-based real-estate firm offering an end-to-end service — from managing and leasing properties to developing land and delivering quality construction. We work with buyers, landlords, and investors who expect their property decisions handled with care, clarity, and professionalism.
+**Overview:** KCGLOBAL Worldwide is a Lagos-based real-estate firm offering an end-to-end service — from managing and leasing properties to developing land and delivering quality construction. We work with buyers, landlords, and investors who expect their property decisions handled with care, clarity, and professionalism.
 
 - **Mission:** To deliver dependable, transparent real-estate solutions that protect our clients' investments and set the standard for service in Lagos.
 - **Vision:** To be the most trusted name in Nigerian real estate — known for integrity, quality, and results.
@@ -134,9 +134,9 @@ Realistic Lagos luxury listings. Prices in Naira (₦). Replace with live invent
 - Quick links: Home, About, Services, Properties, Contact.
 - Services list (five lines above).
 - Social icons (inline SVG): Facebook, Instagram, LinkedIn, WhatsApp (link WhatsApp to `https://wa.me/2348030555002`). Placeholder hrefs — confirm handles with client.
-- Copyright: © [current year] KCGLOBAL World Enterprises. All rights reserved. (Compute the year in JS so it never goes stale.)
+- Copyright: © [current year] KCGLOBAL Worldwide. All rights reserved. (Compute the year in JS so it never goes stale.)
 
 ## SEO
 
-- **Title:** KCGLOBAL World Enterprises — Luxury Real Estate in Lagos
-- **Meta description:** Premium property management, development, and sales in Lagos. KCGLOBAL World Enterprises sets the pace in Nigerian real estate — trusted, transparent, professional.
+- **Title:** KCGLOBAL Worldwide — Luxury Real Estate in Lagos
+- **Meta description:** Premium property management, development, and sales in Lagos. KCGLOBAL Worldwide sets the pace in Nigerian real estate — trusted, transparent, professional.
