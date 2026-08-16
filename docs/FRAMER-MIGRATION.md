@@ -109,6 +109,39 @@ testimonials. The seven built HTML pages carry the expanded copy.
 
 ---
 
+## Slot counts — all content goes in
+
+Every item ships. The template bends to the content, not the other way round.
+
+| Collection | Count | Rule |
+|---|---|---|
+| FAQs | **8** | All eight. |
+| Testimonials | **3** | All three. |
+| Property listings | **6** | All six. |
+
+- **Template has more slots than content** → delete the surplus slots.
+- **Template has fewer slots than content** → duplicate the existing slot/card
+  component to add more. Duplicate the template's own component so styling,
+  spacing and animation are inherited — never hand-build a new one.
+- Never pad with invented filler to fill a slot, and never silently drop an item.
+
+## Map
+
+Add a location map for the office. Same keyless embed already used on the HTML
+site's contact page, so no API key is needed:
+
+```
+https://www.google.com/maps?q=Abule-Ado,+Lagos,+Nigeria&output=embed
+```
+
+Place it where the template's contact/location section expects a map or media
+block. If the template has no such slot, put it in the contact section using the
+template's existing media/embed component.
+
+**TODO(client):** this is centred on Abule-Ado generally, not the exact door.
+Replace with the share-embed URL from KCGLOBAL's Google Business Profile, or the
+exact pin for No. 5 Oteyi Garden Estate Road, before launch.
+
 ## Carry-over cautions
 
 - **Sample data.** Listings, prices, testimonials and stats are placeholders flagged
@@ -133,6 +166,8 @@ testimonials. The seven built HTML pages carry the expanded copy.
 3. Remap colour variables.
 4. Replace copy, length-matched, page by page.
 5. Replace property images and details.
-6. Repoint logo, links, socials, contact, forms.
-7. Review every page at each breakpoint for reflow or overflow.
-8. Report what was flagged, cut, or left empty.
+6. Add or delete listing / FAQ / testimonial slots so all 6 / 8 / 3 items fit.
+7. Add the location map to the contact section.
+8. Repoint logo, links, socials, contact, forms.
+9. Review every page at each breakpoint for reflow or overflow.
+10. Report what was flagged, cut, or left empty.
