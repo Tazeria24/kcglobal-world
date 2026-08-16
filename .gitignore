@@ -9,3 +9,6 @@ Thumbs.db
 *.log
 node_modules/
 .cache/
+
+# MCP connector config — contains a secret, must never be committed
+.mcp.json
