@@ -100,6 +100,12 @@ without the client saying so.
 | 5 | 4-Bedroom Semi-Detached Duplex | Chevron, Lekki, Lagos | 4 | 4 | 300 sqm | contemporary townhouse |
 | 6 | 6-Bedroom Contemporary Mansion | Banana Island, Ikoyi, Lagos | 6 | 7 | 850 sqm | luxury mansion architecture |
 
+**Photography is the client's own — do not go back to Unsplash.** As of
+2026-08-19 all six listings use the client's photographs, in
+`assets/properties/`, named by what they show. The "Image query" column above
+is kept only as a record of what the placeholders were. The Unsplash pattern
+below still applies to the page hero images, which are still stock.
+
 - Card CTA label: **View Details**
 - For land (row 4), hide beds/baths or show "—".
 - Unsplash placeholder pattern (source URL — swap the query per card):
