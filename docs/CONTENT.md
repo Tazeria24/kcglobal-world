@@ -104,7 +104,9 @@ without the client saying so.
 2026-08-19 all six listings use the client's photographs, in
 `assets/properties/`, named by what they show. The "Image query" column above
 is kept only as a record of what the placeholders were. The Unsplash pattern
-below still applies to the page hero images, which are still stock.
+below still applies to the page hero images and the og:image, which are still
+stock **and stay that way** — the client reviewed them on 2026-08-19 and asked
+that they be kept. Do not offer to replace them again.
 
 - Card CTA label: **View Details**
 - For land (row 4), hide beds/baths or show "—".
