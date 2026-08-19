@@ -698,22 +698,6 @@ p { max-width: 68ch; }
   font-weight: var(--fw-bold);
 }
 
-/* Pre-launch rule 5: the number lives in the header, not only the footer. In
-   the mobile drawer it reads as a row like the links; on desktop it sits beside
-   the CTA. A real tel: link in full international format either way. */
-.nav__phone {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: var(--s-2) 0;
-  font-size: var(--fs-body-lg);
-  font-weight: var(--fw-semibold);
-  color: var(--green-900);
-  border-bottom: 1px solid var(--rule-neutral);
-}
-
-.nav__phone .icon { color: var(--green-700); }
-
 .nav__cta { margin-top: var(--s-3); }
 
 /* ===== HAMBURGER ===== */
@@ -783,18 +767,6 @@ body.is-locked { overflow: hidden; }
   }
 
   .nav__link::after { bottom: 0; }
-
-  .nav__phone {
-    padding: 0;
-    font-size: var(--fs-nav);
-    color: var(--nav-fg);
-    border-bottom: 0;
-    white-space: nowrap;
-  }
-
-  .nav__phone .icon { color: var(--gold); }
-
-  .nav__phone:hover { color: var(--white); }
 
   .nav__cta {
     margin-top: 0;
