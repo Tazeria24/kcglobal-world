@@ -2630,6 +2630,171 @@ body.is-locked { overflow: hidden; }
   border-top: 1px solid var(--rule-neutral);
 }
 
+.site-footer__sep { color: var(--on-dark-faint); }
+
+/* The bar sits on the dark band, so this cannot inherit the body link colour.
+   Same gold underline-on-hover as the column links, without borrowing their
+   selector — they are a list, this is inline in a sentence. */
+.site-footer__legal {
+  color: var(--on-dark);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.site-footer__legal:hover {
+  color: var(--white);
+  border-bottom-color: var(--gold);
+}
+
+/* ===== LEGAL PAGE =====
+   The privacy policy, and anything like it later. A legal page is read in one
+   pass by someone looking for a single answer, so it is built for scanning:
+   numbered headings, a tight measure, and no marketing furniture. */
+
+/* No photograph on a legal page — it would read as decoration over a document.
+   .page-header already paints --green-900, so dropping the image and the veil
+   leaves a solid brand band; only the height needs pulling in. */
+.page-header--plain {
+  min-height: 0;
+  padding-block: calc(var(--header-h) + var(--s-6)) var(--s-6);
+}
+
+.legal__stamp {
+  margin-top: var(--s-3);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.02em;
+  color: var(--on-dark);
+}
+
+/* Held tighter than the page container. Legal copy is dense, and a long line
+   is where a reader loses their place and gives up. */
+.legal {
+  max-width: 72ch;
+}
+
+.legal__summary {
+  margin-bottom: var(--s-8);
+}
+
+.legal__summary-title {
+  margin-bottom: var(--s-2);
+  font-size: var(--fs-h3);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  color: var(--green-900);
+}
+
+.legal__section + .legal__section {
+  margin-top: var(--s-8);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--rule-neutral);
+}
+
+/* The number hangs outside the text column on wide screens so the headings
+   line up with the prose below them rather than being indented by their own
+   numerals. Below 768px it simply sits inline. */
+.legal__heading {
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-h3);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-snug);
+  color: var(--green-900);
+}
+
+.legal__num {
+  display: inline-block;
+  min-width: 2.25ch;
+  color: var(--green-700);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lists are reset to none globally, so a legal list has to bring its own
+   marker. A small gold square rather than a bullet keeps the hairline motif
+   going without shouting. */
+.legal__list {
+  color: var(--ink-soft);
+}
+
+.legal__list li {
+  position: relative;
+  padding-left: var(--s-3);
+}
+
+.legal__list li + li {
+  margin-top: var(--s-2);
+}
+
+.legal__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 6px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.legal__list strong {
+  color: var(--ink);
+  font-weight: var(--fw-semibold);
+}
+
+.legal__list--tight {
+  max-width: 64ch;
+  margin-top: var(--s-3);
+}
+
+.prose + .legal__list--tight { margin-top: var(--s-3); }
+.legal__list--tight + .prose { margin-top: var(--s-3); }
+
+/* The third-party table, as a description list: what the service is, and what
+   it receives. A real <table> would be two columns of very uneven length and
+   would need horizontal scroll on a phone for no gain. */
+.legal__defs {
+  max-width: 64ch;
+  margin-top: var(--s-3);
+}
+
+.legal__def {
+  padding-block: var(--s-2);
+  border-bottom: 1px solid var(--rule-neutral);
+}
+
+.legal__def dt {
+  font-weight: var(--fw-semibold);
+  color: var(--ink);
+}
+
+.legal__def dd {
+  margin-top: 4px;
+  color: var(--ink-soft);
+}
+
+.legal__def-note {
+  font-weight: var(--fw-regular);
+  color: var(--ink-soft);
+}
+
+.legal__address {
+  font-style: normal;
+  line-height: var(--lh-body);
+}
+
+.legal__foot {
+  margin-top: var(--s-8);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--gold-28);
+}
+
+@media (min-width: 768px) {
+  .legal__heading {
+    margin-left: -3ch;
+    text-indent: 0;
+  }
+  .legal__num { min-width: 3ch; }
+}
+
 /* ===== REDUCED MOTION =====
    Declared early and re-asserted at the end of the file. */
 @media (prefers-reduced-motion: reduce) {

@@ -15,6 +15,7 @@ Open `index.html` in any browser. That's it — there's no server or install.
 ├── properties.html       # full portfolio, titles explained, buying process
 ├── faq.html              # all questions, grouped (owns the FAQPage schema)
 ├── contact.html          # details, map, and the enquiry form
+├── privacy.html          # privacy policy — linked from the footer, not the nav
 ├── css/style.css         # all styles, shared by every page (token-driven)
 ├── js/script.js          # nav, reveals, lightbox, form UX — shared, no-ops
 │                         #   cleanly on pages missing a given element
@@ -29,7 +30,7 @@ Open `index.html` in any browser. That's it — there's no server or install.
     └── BUILD-PLAN.md     # phase-by-phase build order
 ```
 
-There is no templating: **the header and footer are duplicated into all seven pages on purpose**, since a no-build site has no includes and duplication keeps the chrome working without JavaScript. Change the nav or footer in one file and you must change it in all seven.
+There is no templating: **the header and footer are duplicated into all eight pages on purpose**, since a no-build site has no includes and duplication keeps the chrome working without JavaScript. Change the nav or footer in one file and you must change it in all eight.
 
 ## Building with Claude Code
 Open this folder in Claude Code and paste `prompts/KICKOFF-PROMPT.md`. Claude Code reads `CLAUDE.md` automatically and follows `docs/BUILD-PLAN.md`.

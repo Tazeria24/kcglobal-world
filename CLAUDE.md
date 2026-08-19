@@ -8,7 +8,7 @@
 
 A premium, multi-page marketing website for a Lagos real-estate firm. It must read as an **award-winning luxury property brand** (think Sotheby's International Realty, Knight Frank), not a template.
 
-> **Architecture change (2026-08-10):** this began as a single page and is now seven pages — a home page of condensed teasers plus a dedicated page per section. The home page sells; the inner pages convince. Sections below have been updated to match; where a rule still says "the page", read "each page".
+> **Architecture change (2026-08-10):** this began as a single page and is now eight pages — a home page of condensed teasers plus a dedicated page per section. The home page sells; the inner pages convince. Sections below have been updated to match; where a rule still says "the page", read "each page".
 
 - **Client:** KCGLOBAL WORLDWIDE
 - **Tagline:** *We Set The Pace In Real Estate*
@@ -39,6 +39,7 @@ Full requirements: `docs/PRD.md`. Full copy and property data: `docs/CONTENT.md`
 ├── properties.html
 ├── faq.html
 ├── contact.html          (the only page carrying the enquiry form)
+├── privacy.html          (footer-linked, not in the nav)
 ├── css/
 │   └── style.css         (one stylesheet, shared by every page)
 ├── js/
@@ -50,11 +51,11 @@ Full requirements: `docs/PRD.md`. Full copy and property data: `docs/CONTENT.md`
 └── docs/                 (specs — not shipped)
 ```
 
-**One stylesheet and one script, shared across all pages.** Do not split CSS into multiple files or add a per-page script. Every module in `script.js` must no-op cleanly when its element is absent from the current page — that is how one file serves seven pages.
+**One stylesheet and one script, shared across all pages.** Do not split CSS into multiple files or add a per-page script. Every module in `script.js` must no-op cleanly when its element is absent from the current page — that is how one file serves eight pages.
 
-**`style.css` and `script.js` are cache-busted with a `?v=YYYYMMDD` query string.** Both are served with a one-year `Cache-Control` (see `vercel.json` / `netlify.toml`), so a returning visitor keeps whatever copy their browser already has. **Bump the `v` in all seven pages, in the same pass, whenever you change either file** — otherwise a visitor runs old JS against new HTML. That skew is not theoretical: removing the price element while the cached script still wrote to it threw a TypeError that silently killed the property lightbox (2026-08-19). Relatedly, `script.js` must stay null-safe about the DOM — read and write through guards, never assume a slot exists.
+**`style.css` and `script.js` are cache-busted with a `?v=YYYYMMDD` query string.** Both are served with a one-year `Cache-Control` (see `vercel.json` / `netlify.toml`), so a returning visitor keeps whatever copy their browser already has. **Bump the `v` in all eight pages, in the same pass, whenever you change either file** — otherwise a visitor runs old JS against new HTML. That skew is not theoretical: removing the price element while the cached script still wrote to it threw a TypeError that silently killed the property lightbox (2026-08-19). Relatedly, `script.js` must stay null-safe about the DOM — read and write through guards, never assume a slot exists.
 
-**Header and footer markup is duplicated into every page, deliberately.** With no build step there are no includes, and duplication beats JS injection: the chrome renders without scripting and every page stays crawlable. The cost is that a change to the nav or footer must be applied to all seven files — do it in one pass, and diff them afterwards.
+**Header and footer markup is duplicated into every page, deliberately.** With no build step there are no includes, and duplication beats JS injection: the chrome renders without scripting and every page stays crawlable. The cost is that a change to the nav or footer must be applied to all eight files — do it in one pass, and diff them afterwards.
 
 ---
 
@@ -109,4 +110,4 @@ Every commit must satisfy all of these:
 
 The site is done when it opens from `index.html` with no server, **every page navigates to every other page with no dead links**, each passes the quality floor at all four breakpoints, every section in the PRD is present and populated from CONTENT.md, motion respects reduced-motion, and a first-time visitor would believe this firm charges a premium. It should not look like it came from a template.
 
-Before calling it done, check across all seven pages: no duplicate `<title>`; every internal `href` resolves to a file and, where anchored, to an `id` that exists on it; the header and footer are identical everywhere; and one `<h1>` per page.
+Before calling it done, check across all eight pages: no duplicate `<title>`; every internal `href` resolves to a file and, where anchored, to an `id` that exists on it; the header and footer are identical everywhere; and one `<h1>` per page.

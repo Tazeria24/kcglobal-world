@@ -6,7 +6,7 @@ Single source of truth for all copy and data. Use verbatim. Blocks marked **[SAM
 
 ## Page map (added 2026-08-10)
 
-The site is seven pages, not one. Each section below feeds both the home-page teaser and the detail page that owns it:
+The site is eight pages, not one. Each section below feeds both the home-page teaser and the detail page that owns it:
 
 | Page | Owns |
 |---|---|
@@ -17,6 +17,7 @@ The site is seven pages, not one. Each section below feeds both the home-page te
 | `properties.html` | All six listings, titles explained, the buying process |
 | `faq.html` | All eight questions, grouped — and the FAQPage structured data |
 | `contact.html` | Contact details, map, and the only enquiry form on the site |
+| `privacy.html` | The privacy policy — drafted from what the site verifiably does, linked from the footer of every page rather than the nav |
 
 **On expanded copy.** The detail pages carry more prose than this file specifies. That copy is authored in-page in the brand's register and flagged there with `<!-- REVIEW: expanded copy — ... -->`; it is deliberately **not** mirrored here, because two copies of the same paragraphs drift apart within a week. This file remains authoritative for brand, contact details, services, listings, testimonials and SEO — if those conflict with a page, this file wins.
 

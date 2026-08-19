@@ -56,4 +56,13 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Legal. Low priority, but it must be crawlable: a policy nobody can find
+       is not a policy. -->
+  <url>
+    <loc>https://kcglobal-world.vercel.app/privacy.html</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
