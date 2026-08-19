@@ -87,7 +87,7 @@ Every commit must satisfy all of these:
 - Property listings, testimonials, and "why choose us" stats in CONTENT.md are **realistic sample data marked for client review** — build with them, but leave a `<!-- REVIEW: sample data -->` comment near each block so they're easy to swap.
 - The detail pages need more copy than CONTENT.md carries. That expanded copy is **authored in-page**, in the brand's register, and every block of it is flagged `<!-- REVIEW: expanded copy — ... -->` with a note on what the client must confirm. CONTENT.md stays the source of truth for brand, contact details, services, listings and testimonials; it does not attempt to mirror the authored page copy, which would only drift.
 - **Authored copy must not invent verifiable facts.** Scopes, commitments and process steps are fair to draft because the client can confirm or strike them. Fees, response times, title claims, credentials, awards, team names and client counts are not — flag anything of that kind rather than inventing it. Never fabricate testimonials or reviews, and never emit `Review` or `aggregateRating` structured data over sample quotes.
-- Prices are Nigerian Naira (₦). Use the ₦ symbol, thousands separators, and no decimals.
+- **No prices anywhere.** The client instructed on 2026-08-19 that listing prices are not to be published. Cards, the lightbox and the WhatsApp enquiry text all omit them, and no `Offer` / `priceRange` structured data is emitted. Location and specification still show. Do not reintroduce a price — including a "from" figure or a price band — without the client asking.
 - Images: Unsplash placeholders via the URLs listed in CONTENT.md. Every image needs a real `alt`.
 
 ---

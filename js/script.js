@@ -423,7 +423,6 @@
       var mainImg = card.querySelector('.property__media img');
       var title = text(card, '.property__title');
       var location = text(card, '.property__location');
-      var price = text(card, '.property__price');
       var tag = text(card, '.property__tag');
 
       shots = [];
@@ -432,7 +431,6 @@
         if (url) shots.push({ src: url, alt: title + ' — additional photo' });
       });
 
-      document.getElementById('lb-price').textContent = price;
       document.getElementById('lb-title').textContent = title;
       document.getElementById('lb-desc').textContent = card.dataset.description || '';
 
@@ -451,7 +449,7 @@
 
       waLink.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(
         'Hello KCGLOBAL, I would like to enquire about the ' + title +
-        ' at ' + location + ' (' + price + '). Is it still available?'
+        ' at ' + location + '. Could you send the price and arrange an inspection?'
       );
 
       buildThumbs();

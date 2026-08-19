@@ -1263,23 +1263,13 @@ body.is-locked { overflow: hidden; }
   padding: var(--s-3);
 }
 
-/* Manrope, not the serif. A price is data a buyer compares across cards, and
-   the sans keeps the digits even and scannable; lining figures in a display
-   serif wobble at this size. tnum locks the digit widths so ₦180,000,000 and
-   ₦1,200,000,000 align down the column. */
-.property__price {
-  font-family: var(--font-body);
-  font-size: 1.4375rem;
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  font-variant-numeric: tabular-nums;
-  color: var(--green-900);
-}
-
+/* No price is published — the client's instruction — so the title carries the
+   card on its own. It is sized up from the 17px it used when a price sat above
+   it, because a card needs one line that leads; leaving the title at its old
+   size just made the body look decapitated. Manrope, not the serif: DM Serif
+   goes weak below ~20px. */
 .property__title {
-  margin-top: 4px;
-  font-size: 1.0625rem;
+  font-size: 1.1875rem;
   font-family: var(--font-body);
   font-weight: var(--fw-semibold);
   line-height: 1.4;
@@ -2060,22 +2050,10 @@ body.is-locked { overflow: hidden; }
 /* ===== LIGHTBOX BODY ===== */
 .lightbox__body { padding: var(--s-3); }
 
-.lightbox__price {
-  font-family: var(--font-body);
-  font-size: 1.6875rem;
-  font-weight: var(--fw-bold);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  font-variant-numeric: tabular-nums;
-  color: var(--green-900);
-}
-
-/* Manrope, mirroring .property__title. The dialog shows the same information
-   as the card that opened it, so it keeps the card's hierarchy — price
-   dominant, title secondary. Setting this in the serif would invert that and
-   make the h2 read lighter than the price sitting above it. */
+/* Manrope, mirroring .property__title — the dialog shows the same information
+   as the card that opened it, so it keeps the card's hierarchy. Setting this in
+   the serif would go weak at this size. */
 .lightbox__title {
-  margin-top: 4px;
   font-family: var(--font-body);
   font-size: 1.375rem;
   font-weight: var(--fw-semibold);
@@ -2158,9 +2136,9 @@ body.is-locked { overflow: hidden; }
   .lightbox { padding: var(--s-4); }
   .lightbox__body { padding: var(--s-4); }
 
-  /* On a wide screen a 3:2 hero pushes the price and the enquiry buttons below
-     the panel fold. Cap it against the viewport so the CTA is always in view
-     without scrolling — the photo is the hook, the button is the point. */
+  /* On a wide screen a 3:2 hero pushes the details and the enquiry buttons
+     below the panel fold. Cap it against the viewport so the CTA is always in
+     view without scrolling — the photo is the hook, the button is the point. */
   .lightbox__hero {
     aspect-ratio: 16 / 9;
     max-height: 42svh;

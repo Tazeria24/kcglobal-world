@@ -23,9 +23,9 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- ===== STRUCTURED DATA =====
-       Breadcrumbs only. An ItemList of Offers is deliberately omitted while the
-       listings below are sample data — publishing invented prices as structured
-       offers is a Google manual-action risk. Add it with live inventory. -->
+       Breadcrumbs only. An ItemList of Offers is deliberately omitted: the
+       client has asked that no prices be published, and an Offer without a
+       price is not eligible for rich results anyway. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -129,18 +129,19 @@
           <p class="eyebrow">Available now</p>
           <h2 id="portfolio-title">A selection from our portfolio</h2>
           <p>
-            Select any listing to see the full gallery and details. Prices are in Naira and
-            exclude legal and agency fees, which are quoted before you commit.
+            Select any listing to see the full gallery and details. Speak to us for
+            pricing, title documents and inspection.
           </p>
         </div>
 
-        <!-- REVIEW: sample data — listings and prices are still placeholders
-             and must be replaced with live inventory before launch.
+        <!-- REVIEW: sample data — the listings are still placeholders and must
+             be replaced with live inventory before launch. Prices are deliberately
+             not shown anywhere on the site, at the client's instruction (2026-08-19).
              EXCEPTION: five of the six listings now carry the client's own
              photographs — see assets/properties/{vi-apartment,banana-island-mansion,
              ikoyi-duplex,lekki-terrace,chevron-duplex}-*.jpg. Those images are real;
-             the prices and specifications beside them are not yet confirmed, and no
-             photo has been matched to a verified address. Only the Abijo land plot
+             the specifications beside them are not yet confirmed, and no photo
+             has been matched to a verified address. Only the Abijo land plot
              is still on stock photography. -->
         <ul class="properties__grid">
 
@@ -154,7 +155,6 @@
               <span class="property__tag">Duplex</span>
             </div>
             <div class="property__body">
-              <p class="property__price">&#8358;180,000,000</p>
               <h3 class="property__title">4-Bedroom Terrace Duplex</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -179,7 +179,6 @@
               <span class="property__tag">Duplex</span>
             </div>
             <div class="property__body">
-              <p class="property__price">&#8358;450,000,000</p>
               <h3 class="property__title">5-Bedroom Detached Duplex</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -204,7 +203,6 @@
               <span class="property__tag">Apartment</span>
             </div>
             <div class="property__body">
-              <p class="property__price">&#8358;120,000,000</p>
               <h3 class="property__title">Serviced 3-Bedroom Apartment</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -229,7 +227,6 @@
               <span class="property__tag">Land</span>
             </div>
             <div class="property__body">
-              <p class="property__price">&#8358;25,000,000</p>
               <h3 class="property__title">648 sqm Dry Plot (C-of-O)</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -256,7 +253,6 @@
               <span class="property__tag">Duplex</span>
             </div>
             <div class="property__body">
-              <p class="property__price">&#8358;150,000,000</p>
               <h3 class="property__title">4-Bedroom Semi-Detached Duplex</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -281,7 +277,6 @@
               <span class="property__tag">Mansion</span>
             </div>
             <div class="property__body">
-              <p class="property__price">&#8358;1,200,000,000</p>
               <h3 class="property__title">6-Bedroom Contemporary Mansion</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -453,7 +448,6 @@
       <ul class="lightbox__thumbs" id="lb-thumbs"></ul>
 
       <div class="lightbox__body">
-        <p class="lightbox__price" id="lb-price"></p>
         <h2 class="lightbox__title" id="lb-title"></h2>
         <p class="lightbox__location" id="lb-location"></p>
         <ul class="lightbox__meta" id="lb-meta"></ul>
@@ -470,7 +464,7 @@
           <button class="btn btn--ghost" type="button" id="lb-contact">Request a callback</button>
         </div>
 
-        <!-- REVIEW: sample data — listing details are placeholders -->
+        <!-- REVIEW: sample data — listing details are placeholders. No price is shown by client instruction. -->
         <p class="lightbox__note">Photos are indicative. Full documentation and inspection available on request.</p>
       </div>
     </div>

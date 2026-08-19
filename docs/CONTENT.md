@@ -83,16 +83,22 @@ The site is seven pages, not one. Each section below feeds both the home-page te
 
 ## Featured Properties  [SAMPLE — client review]
 
-Realistic Lagos luxury listings. Prices in Naira (₦). Replace with live inventory before launch.
+Realistic Lagos luxury listings. Replace with live inventory before launch.
 
-| # | Title | Location | Price | Beds | Baths | Area | Image query |
-|---|---|---|---|---|---|---|---|
-| 1 | 4-Bedroom Terrace Duplex | Lekki Phase 1, Lagos | ₦180,000,000 | 4 | 5 | 350 sqm | modern luxury duplex exterior |
-| 2 | 5-Bedroom Detached Duplex | Ikoyi, Lagos | ₦450,000,000 | 5 | 6 | 600 sqm | luxury detached house |
-| 3 | Serviced 3-Bedroom Apartment | Victoria Island, Lagos | ₦120,000,000 | 3 | 3 | 210 sqm | modern apartment interior |
-| 4 | 648 sqm Dry Plot (C-of-O) | Abijo GRA, Ajah, Lagos | ₦25,000,000 | — | — | 648 sqm | land plot for sale |
-| 5 | 4-Bedroom Semi-Detached Duplex | Chevron, Lekki, Lagos | ₦150,000,000 | 4 | 4 | 300 sqm | contemporary townhouse |
-| 6 | 6-Bedroom Contemporary Mansion | Banana Island, Ikoyi, Lagos | ₦1,200,000,000 | 6 | 7 | 850 sqm | luxury mansion architecture |
+**No prices.** The client instructed on 2026-08-19 that no price is to appear
+anywhere on the site. Prices were removed from every card, from the lightbox and
+from the WhatsApp enquiry text; the price column was deleted from this table so
+nobody reinstates one from here. Buyers are told to ask. Do not add a price back
+without the client saying so.
+
+| # | Title | Location | Beds | Baths | Area | Image query |
+|---|---|---|---|---|---|---|
+| 1 | 4-Bedroom Terrace Duplex | Lekki Phase 1, Lagos | 4 | 5 | 350 sqm | modern luxury duplex exterior |
+| 2 | 5-Bedroom Detached Duplex | Ikoyi, Lagos | 5 | 6 | 600 sqm | luxury detached house |
+| 3 | Serviced 3-Bedroom Apartment | Victoria Island, Lagos | 3 | 3 | 210 sqm | modern apartment interior |
+| 4 | 648 sqm Dry Plot (C-of-O) | Abijo GRA, Ajah, Lagos | — | — | 648 sqm | land plot for sale |
+| 5 | 4-Bedroom Semi-Detached Duplex | Chevron, Lekki, Lagos | 4 | 4 | 300 sqm | contemporary townhouse |
+| 6 | 6-Bedroom Contemporary Mansion | Banana Island, Ikoyi, Lagos | 6 | 7 | 850 sqm | luxury mansion architecture |
 
 - Card CTA label: **View Details**
 - For land (row 4), hide beds/baths or show "—".
