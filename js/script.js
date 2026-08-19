@@ -245,10 +245,10 @@
     var PHONE = /^[\d\s()+-]{7,20}$/;
 
     var rules = [
-      { id: 'cf-name', message: 'Please enter your full name.', test: function (v) { return v.length >= 2; } },
-      { id: 'cf-email', message: 'Please enter a valid email address.', test: function (v) { return EMAIL.test(v); } },
-      { id: 'cf-phone', message: 'Please enter a phone number we can reach you on.', test: function (v) { return PHONE.test(v) && (v.replace(/\D/g, '').length >= 7); } },
-      { id: 'cf-message', message: 'Please tell us a little about what you need.', test: function (v) { return v.length >= 10; } }
+      { id: 'cf-name', message: 'Enter your full name, so we know who we are replying to.', test: function (v) { return v.length >= 2; } },
+      { id: 'cf-email', message: 'Enter an email address in the form name@example.com.', test: function (v) { return EMAIL.test(v); } },
+      { id: 'cf-phone', message: 'Enter a phone number starting 0 or +234 — at least 7 digits.', test: function (v) { return PHONE.test(v) && (v.replace(/\D/g, '').length >= 7); } },
+      { id: 'cf-message', message: 'Tell us what you need in a sentence or two — at least 10 characters.', test: function (v) { return v.length >= 10; } }
     ];
 
     function setError(rule, message) {

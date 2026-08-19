@@ -47,9 +47,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap">
 
   <!-- ===== ICONS & STYLES ===== -->
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=20260819d">
-  <script src="js/script.js?v=20260819d" defer></script>
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css?v=20260819e">
+  <script src="js/script.js?v=20260819e" defer></script>
 
   <script>document.documentElement.classList.remove('no-js');</script>
 </head>
@@ -83,6 +86,10 @@
           <li><a class="nav__link" href="faq.html">FAQ</a></li>
           <li><a class="nav__link" href="contact.html">Contact</a></li>
         </ul>
+        <a class="nav__phone" href="tel:+2348030555002">
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 006 6l1.5-2 4 1.5v3a2 2 0 01-2.2 2A16.5 16.5 0 014.5 5.7 2 2 0 016.5 3.5z"/></svg>
+          <span>08030555002</span>
+        </a>
         <a class="btn btn--sm nav__cta" href="contact.html">Book Consultation</a>
       </nav>
 
@@ -234,7 +241,7 @@
               <span class="property__tag">Land</span>
             </div>
             <div class="property__body">
-              <h3 class="property__title">648 sqm Dry Plot (C-of-O)</h3>
+              <h3 class="property__title">648 sqm Dry Plot (<abbr tabindex="0" title="Certificate of Occupancy — the Lagos State government document granting the holder a right of occupancy over the land">C-of-O</abbr>)</h3>
               <p class="property__location">
                 <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
                 Oteyi Garden Estate, Abule-Ado, Lagos
@@ -310,7 +317,7 @@
           </p>
           <p>
             Call <a href="tel:+2348030555002">08030555002</a> or
-            <a href="https://wa.me/2348030555002" target="_blank" rel="noopener">message us on WhatsApp</a>.
+            <a href="https://wa.me/2348030555002?text=Hello%20KCGLOBAL%2C%20I%20found%20you%20on%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener">message us on WhatsApp</a>.
           </p>
         </div>
       </div>
@@ -461,7 +468,7 @@
         <p class="lightbox__desc" id="lb-desc"></p>
 
         <div class="lightbox__actions">
-          <a class="btn lightbox__wa" id="lb-wa" href="#" target="_blank" rel="noopener">
+          <a class="btn lightbox__wa" id="lb-wa" href="https://wa.me/2348030555002?text=Hello%20KCGLOBAL%2C%20I%20found%20you%20on%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener">
             <svg class="lightbox__wa-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M16.04 3.2c-7.1 0-12.87 5.77-12.87 12.87 0 2.27.6 4.49 1.73 6.44L3.09 29.2l6.86-1.8a12.83 12.83 0 006.09 1.55h.01c7.09 0 12.86-5.77 12.86-12.87 0-3.44-1.34-6.67-3.77-9.1a12.78 12.78 0 00-9.1-3.78zm0 23.13h-.01a10.68 10.68 0 01-5.44-1.49l-.39-.23-4.07 1.07 1.086-3.97-.254-.406a10.66 10.66 0 01-1.634-5.7c0-5.9 4.8-10.7 10.71-10.7 2.86 0 5.55 1.12 7.57 3.14a10.63 10.63 0 013.13 7.57c0 5.9-4.8 10.7-10.7 10.7z"/>
               <path fill="currentColor" d="M21.91 18.85c-.32-.16-1.9-.94-2.2-1.05-.29-.1-.5-.16-.72.16-.21.32-.82 1.04-1.01 1.25-.18.21-.37.24-.69.08-.32-.16-1.36-.5-2.59-1.6-.96-.85-1.6-1.91-1.79-2.23-.19-.32-.02-.5.14-.66.15-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.52-.54-.72-.55h-.61c-.21 0-.56.08-.85.4-.29.32-1.11 1.09-1.11 2.66s1.14 3.08 1.3 3.29c.16.21 2.24 3.42 5.43 4.8.76.33 1.35.52 1.81.67.76.24 1.45.21 2 .13.61-.09 1.9-.78 2.17-1.53.27-.75.27-1.39.19-1.53-.08-.13-.29-.21-.61-.37z"/>
@@ -496,25 +503,13 @@
           </a>
           <p class="site-footer__tagline">Setting the pace in Lagos real estate.</p>
 
-          <!-- Placeholder hrefs — confirm the client's handles before launch. -->
+          <!-- Facebook, Instagram and LinkedIn icons removed 2026-08-19: they
+               pointed at href="#" and went nowhere. An icon that does nothing
+               costs more trust than a missing icon does.
+               TODO(client): supply the live profile URLs and they go back in. -->
           <ul class="socials">
             <li>
-              <a href="#" aria-label="KCGLOBAL Worldwide on Facebook">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5h-2.2A4.3 4.3 0 009 7.8V10H6.5v3.5H9v7h3.5v-7h2.6l.5-3.5h-3.1V7.8c0-.6.5-1 1-1h2z"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" aria-label="KCGLOBAL Worldwide on Instagram">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="1"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" aria-label="KCGLOBAL Worldwide on LinkedIn">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M7.6 10.4V17"/><circle cx="7.6" cy="7.5" r="1"/><path d="M11.6 17v-6.6M11.6 13.4a2.4 2.4 0 014.8 0V17"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://wa.me/2348030555002" aria-label="Message KCGLOBAL Worldwide on WhatsApp">
+              <a href="https://wa.me/2348030555002?text=Hello%20KCGLOBAL%2C%20I%20found%20you%20on%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." aria-label="Message KCGLOBAL Worldwide on WhatsApp">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 01-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1120.5 11.6z"/><path d="M9.2 8.6c.2-.4.4-.5.7-.5h.5c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .4-.1.5l-.5.6c-.1.2-.2.3 0 .5.6 1 1.4 1.7 2.5 2.1.3.1.4 0 .5-.1l.6-.6c.2-.2.3-.2.5-.1l1.5.7c.3.2.4.3.4.5 0 .3-.2.9-.6 1.2-.4.3-.9.4-1.5.3-2.6-.5-5-2.9-5.8-5.6-.2-.6-.1-1.2.1-1.5z"/></svg>
               </a>
             </li>
@@ -562,14 +557,16 @@
       <div class="site-footer__bar">
         <p>&copy; <span id="year">2026</span> KCGLOBAL Worldwide. All rights reserved.
           <span class="site-footer__sep" aria-hidden="true">·</span>
-          <a class="site-footer__legal" href="privacy.html">Privacy Policy</a></p>
+          <a class="site-footer__legal" href="privacy.html">Privacy Policy</a>
+          <span class="site-footer__sep" aria-hidden="true">·</span>
+          <a class="site-footer__legal" href="terms.html">Terms of Service</a></p>
         <p class="site-footer__motto">We Set The Pace In Real Estate</p>
       </div>
     </div>
   </footer>
 
   <!-- ===== FLOATING WHATSAPP ===== -->
-  <a class="wa-float" href="https://wa.me/2348030555002" target="_blank" rel="noopener"
+  <a class="wa-float" href="https://wa.me/2348030555002?text=Hello%20KCGLOBAL%2C%20I%20found%20you%20on%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener"
      aria-label="Chat with KCGLOBAL Worldwide on WhatsApp">
     <span class="wa-float__tip" aria-hidden="true">Chat with us on WhatsApp</span>
     <span class="wa-float__pulse" aria-hidden="true"></span>

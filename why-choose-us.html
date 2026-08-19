@@ -44,9 +44,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap">
 
   <!-- ===== ICONS & STYLES ===== -->
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=20260819d">
-  <script src="js/script.js?v=20260819d" defer></script>
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css?v=20260819e">
+  <script src="js/script.js?v=20260819e" defer></script>
 
   <script>document.documentElement.classList.remove('no-js');</script>
 </head>
@@ -80,6 +83,10 @@
           <li><a class="nav__link" href="faq.html">FAQ</a></li>
           <li><a class="nav__link" href="contact.html">Contact</a></li>
         </ul>
+        <a class="nav__phone" href="tel:+2348030555002">
+          <svg class="icon icon--sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 006 6l1.5-2 4 1.5v3a2 2 0 01-2.2 2A16.5 16.5 0 014.5 5.7 2 2 0 016.5 3.5z"/></svg>
+          <span>08030555002</span>
+        </a>
         <a class="btn btn--sm nav__cta" href="contact.html">Book Consultation</a>
       </nav>
 
@@ -220,21 +227,9 @@
 
         </ul>
 
-        <!-- REVIEW: sample data — stat strip figures to be confirmed with client -->
-        <dl class="stats reveal">
-          <div class="stat">
-            <dt class="stat__label">Years' Experience</dt>
-            <dd class="stat__value">15+</dd>
-          </div>
-          <div class="stat">
-            <dt class="stat__label">Properties Managed</dt>
-            <dd class="stat__value">200+</dd>
-          </div>
-          <div class="stat">
-            <dt class="stat__label">Satisfied Clients</dt>
-            <dd class="stat__value">500+</dd>
-          </div>
-        </dl>
+        <!-- Stat strip removed 2026-08-19 — same invented figures as the home
+             and about pages carried. TODO(client): confirm real numbers or
+             leave it out. -->
       </div>
     </section>
 
@@ -295,25 +290,16 @@
       </div>
     </section>
 
-    <!-- ===== LEAD QUOTE ===== -->
-    <section class="section" aria-labelledby="voice-title">
+    <!-- ===== LEAD QUOTE =====
+         Removed 2026-08-19. It quoted "Adebayo Okonkwo, Property Investor,
+         Lekki" — a person who does not exist, invented as sample copy. The
+         same quote also ran on the home page and has been removed there.
+         TODO(client): supply a real quote you have permission to publish. -->
+    <section class="section" aria-labelledby="refs-title">
       <div class="container">
-        <h2 class="sr-only" id="voice-title">In our clients' words</h2>
-
-        <!-- REVIEW: sample data — testimonial to be confirmed with client -->
-        <figure class="quote quote--lead reveal">
-          <blockquote class="quote__body">
-            <p>KCGLOBAL managed my rental portfolio for three years without a single headache.
-            Transparent, responsive, and genuinely trustworthy.</p>
-          </blockquote>
-          <figcaption class="quote__author">
-            <span class="quote__name">Adebayo Okonkwo</span>
-            <span class="quote__role">Property Investor, Lekki</span>
-          </figcaption>
-        </figure>
-
+        <h2 class="sr-only" id="refs-title">Client references</h2>
         <div class="section-foot reveal">
-          <a class="link-arrow" href="index.html#testimonials">Read what other clients say<span aria-hidden="true">&#8594;</span></a>
+          <a class="link-arrow" href="contact.html">Ask us for client references<span aria-hidden="true">&#8594;</span></a>
         </div>
       </div>
     </section>
@@ -350,25 +336,13 @@
           </a>
           <p class="site-footer__tagline">Setting the pace in Lagos real estate.</p>
 
-          <!-- Placeholder hrefs — confirm the client's handles before launch. -->
+          <!-- Facebook, Instagram and LinkedIn icons removed 2026-08-19: they
+               pointed at href="#" and went nowhere. An icon that does nothing
+               costs more trust than a missing icon does.
+               TODO(client): supply the live profile URLs and they go back in. -->
           <ul class="socials">
             <li>
-              <a href="#" aria-label="KCGLOBAL Worldwide on Facebook">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5h-2.2A4.3 4.3 0 009 7.8V10H6.5v3.5H9v7h3.5v-7h2.6l.5-3.5h-3.1V7.8c0-.6.5-1 1-1h2z"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" aria-label="KCGLOBAL Worldwide on Instagram">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="1"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" aria-label="KCGLOBAL Worldwide on LinkedIn">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M7.6 10.4V17"/><circle cx="7.6" cy="7.5" r="1"/><path d="M11.6 17v-6.6M11.6 13.4a2.4 2.4 0 014.8 0V17"/></svg>
-              </a>
-            </li>
-            <li>
-              <a href="https://wa.me/2348030555002" aria-label="Message KCGLOBAL Worldwide on WhatsApp">
+              <a href="https://wa.me/2348030555002?text=Hello%20KCGLOBAL%2C%20I%20found%20you%20on%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." aria-label="Message KCGLOBAL Worldwide on WhatsApp">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 01-12.6 7.4L3.5 20.5l1.5-4.3A8.5 8.5 0 1120.5 11.6z"/><path d="M9.2 8.6c.2-.4.4-.5.7-.5h.5c.2 0 .4 0 .5.4l.7 1.6c0 .2 0 .4-.1.5l-.5.6c-.1.2-.2.3 0 .5.6 1 1.4 1.7 2.5 2.1.3.1.4 0 .5-.1l.6-.6c.2-.2.3-.2.5-.1l1.5.7c.3.2.4.3.4.5 0 .3-.2.9-.6 1.2-.4.3-.9.4-1.5.3-2.6-.5-5-2.9-5.8-5.6-.2-.6-.1-1.2.1-1.5z"/></svg>
               </a>
             </li>
@@ -416,14 +390,16 @@
       <div class="site-footer__bar">
         <p>&copy; <span id="year">2026</span> KCGLOBAL Worldwide. All rights reserved.
           <span class="site-footer__sep" aria-hidden="true">·</span>
-          <a class="site-footer__legal" href="privacy.html">Privacy Policy</a></p>
+          <a class="site-footer__legal" href="privacy.html">Privacy Policy</a>
+          <span class="site-footer__sep" aria-hidden="true">·</span>
+          <a class="site-footer__legal" href="terms.html">Terms of Service</a></p>
         <p class="site-footer__motto">We Set The Pace In Real Estate</p>
       </div>
     </div>
   </footer>
 
   <!-- ===== FLOATING WHATSAPP ===== -->
-  <a class="wa-float" href="https://wa.me/2348030555002" target="_blank" rel="noopener"
+  <a class="wa-float" href="https://wa.me/2348030555002?text=Hello%20KCGLOBAL%2C%20I%20found%20you%20on%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener"
      aria-label="Chat with KCGLOBAL Worldwide on WhatsApp">
     <span class="wa-float__tip" aria-hidden="true">Chat with us on WhatsApp</span>
     <span class="wa-float__pulse" aria-hidden="true"></span>

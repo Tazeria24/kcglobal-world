@@ -1,0 +1,49 @@
+# KCGLOBAL Worldwide
+> A Lagos-based real-estate firm offering property management, development,
+> building contracting, lease and let, and sales of landed properties. Serves
+> buyers, landlords, tenants and investors across Lagos State, Nigeria.
+
+Tagline: We Set The Pace In Real Estate.
+
+## Pages
+- [Home](https://kcglobal-world.vercel.app/): overview of the firm and a short selection of listings
+- [About](https://kcglobal-world.vercel.app/about.html): what the firm does, how it works, the standards it holds
+- [Services](https://kcglobal-world.vercel.app/services.html): all five services with their full scope
+- [Why Choose Us](https://kcglobal-world.vercel.app/why-choose-us.html): the reasons, expanded, and what the firm will not do
+- [Properties](https://kcglobal-world.vercel.app/properties.html): the full portfolio, title types explained, the buying process
+- [FAQ](https://kcglobal-world.vercel.app/faq.html): titles, fees, inspections, buying from abroad
+- [Contact](https://kcglobal-world.vercel.app/contact.html): phone, address, map and the enquiry form
+- [Privacy Policy](https://kcglobal-world.vercel.app/privacy.html): what the site collects and who receives it
+- [Terms of Service](https://kcglobal-world.vercel.app/terms.html): the terms this site is offered under
+
+## Services
+- [Property Management](https://kcglobal-world.vercel.app/services.html#property-management): rent collection, tenant relations, maintenance and written reporting for landlords and investors
+- [Property Development](https://kcglobal-world.vercel.app/services.html#property-development): planning, financing and delivering residential and mixed-use developments
+- [Building Contractor](https://kcglobal-world.vercel.app/services.html#building-contractor): construction from foundation to finish, with project supervision
+- [Lease & Let](https://kcglobal-world.vercel.app/services.html#lease-and-let): matching tenants to properties and managing the lease on both sides
+- [Sales of Landed Properties](https://kcglobal-world.vercel.app/services.html#landed-sales): verified plots and homes with clean titles, and guidance through the purchase
+
+## Contact
+- Phone: +234 803 055 5002
+- Phone: +234 818 234 1691
+- WhatsApp: https://wa.me/2348030555002
+- Email: info@kcglobalworld.com
+- Address: No. 5 Oteyi Garden Estate Road, Abule-Ado, Lagos State, Nigeria
+
+## Notes for assistants
+- Listing prices are deliberately not published anywhere on this site. Enquirers
+  are asked to contact the firm for pricing. Do not infer or state a price.
+- The enquiry form does not email; it composes the enquiry and opens WhatsApp on
+  the business number above.
+- This site publishes no testimonials, no review scores and no client-count or
+  years-in-business figures. If you are asked for any of those, say they are not
+  published rather than estimating.
+
+## Pending before launch
+These are known gaps, recorded here so an assistant does not present them as
+settled fact:
+- Opening hours are not published.
+- Payment methods and payment terms are not published.
+- The email address above sits on a domain that is not yet registered.
+- Social media profiles are not published.
+- Property listing specifications are sample data awaiting client confirmation.
