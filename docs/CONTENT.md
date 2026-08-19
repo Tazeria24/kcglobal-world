@@ -93,10 +93,10 @@ without the client saying so.
 
 | # | Title | Location | Beds | Baths | Area | Image query |
 |---|---|---|---|---|---|---|
-| 1 | 4-Bedroom Terrace Duplex | Lekki Phase 1, Lagos | 4 | 5 | 350 sqm | modern luxury duplex exterior |
+| 1 | 4-Bedroom Terrace Duplex | Oteyi Garden Estate, Abule-Ado, Lagos | 4 | 5 | 350 sqm | modern luxury duplex exterior |
 | 2 | 5-Bedroom Detached Duplex | Ikoyi, Lagos | 5 | 6 | 600 sqm | luxury detached house |
 | 3 | Serviced 3-Bedroom Apartment | Victoria Island, Lagos | 3 | 3 | 210 sqm | modern apartment interior |
-| 4 | 648 sqm Dry Plot (C-of-O) | Abijo GRA, Ajah, Lagos | — | — | 648 sqm | land plot for sale |
+| 4 | 648 sqm Dry Plot (C-of-O) | Oteyi Garden Estate, Abule-Ado, Lagos | — | — | 648 sqm | land plot for sale |
 | 5 | 4-Bedroom Semi-Detached Duplex | Chevron, Lekki, Lagos | 4 | 4 | 300 sqm | contemporary townhouse |
 | 6 | 6-Bedroom Contemporary Mansion | Banana Island, Ikoyi, Lagos | 6 | 7 | 850 sqm | luxury mansion architecture |
 
@@ -112,7 +112,7 @@ that they be kept. Do not offer to replace them again.
 - For land (row 4), hide beds/baths or show "—".
 - Unsplash placeholder pattern (source URL — swap the query per card):
   `https://source.unsplash.com/800x600/?luxury,house,architecture`
-  Prefer specific queries above for variety. Every image needs a descriptive `alt` (e.g. "4-bedroom terrace duplex in Lekki Phase 1").
+  Prefer specific queries above for variety. Every image needs a descriptive `alt` (e.g. "4-bedroom terrace duplex at Oteyi Garden Estate").
 
 ---
 
