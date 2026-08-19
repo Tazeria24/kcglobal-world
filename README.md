@@ -16,6 +16,7 @@ Open `index.html` in any browser. That's it — there's no server or install.
 ├── faq.html              # all questions, grouped (owns the FAQPage schema)
 ├── contact.html          # details, map, and the enquiry form
 ├── privacy.html          # privacy policy — linked from the footer, not the nav
+├── 404.html              # not-found page — root-absolute paths, noindex, unlisted
 ├── css/style.css         # all styles, shared by every page (token-driven)
 ├── js/script.js          # nav, reveals, lightbox, form UX — shared, no-ops
 │                         #   cleanly on pages missing a given element

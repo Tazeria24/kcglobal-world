@@ -2550,6 +2550,9 @@ body.is-locked { overflow: hidden; }
 }
 
 .tile {
+  /* Positioned so the 404's stretched tile links have something to resolve
+     against. A no-op everywhere else — these cards have nothing absolute. */
+  position: relative;
   padding: var(--s-4);
   border-radius: var(--r-md);
   border: 1px solid var(--rule-neutral);
@@ -2662,6 +2665,29 @@ body.is-locked { overflow: hidden; }
   color: var(--white);
   border-bottom-color: var(--gold);
 }
+
+/* ===== NOT FOUND =====
+   The 404 reuses .tile, but here each tile is a route out rather than a
+   statement, so its title has to read as a link. The whole tile is the target:
+   the ::after stretches the anchor over its card, which keeps one link per
+   destination for a screen reader while giving a mouse the full box. */
+.tile__title a {
+  color: var(--green-900);
+  text-decoration: none;
+}
+
+.tile__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+
+.tile:hover .tile__title a,
+.tile__title a:focus-visible { color: var(--green-700); }
+
+.notfound__callout { margin-top: var(--s-6); }
 
 /* ===== LEGAL PAGE =====
    The privacy policy, and anything like it later. A legal page is read in one

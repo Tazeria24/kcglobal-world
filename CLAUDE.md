@@ -40,6 +40,7 @@ Full requirements: `docs/PRD.md`. Full copy and property data: `docs/CONTENT.md`
 ├── faq.html
 ├── contact.html          (the only page carrying the enquiry form)
 ├── privacy.html          (footer-linked, not in the nav)
+├── 404.html              (not linked, not in the sitemap — see below)
 ├── css/
 │   └── style.css         (one stylesheet, shared by every page)
 ├── js/
@@ -54,6 +55,8 @@ Full requirements: `docs/PRD.md`. Full copy and property data: `docs/CONTENT.md`
 **One stylesheet and one script, shared across all pages.** Do not split CSS into multiple files or add a per-page script. Every module in `script.js` must no-op cleanly when its element is absent from the current page — that is how one file serves eight pages.
 
 **`style.css` and `script.js` are cache-busted with a `?v=YYYYMMDD` query string.** Both are served with a one-year `Cache-Control` (see `vercel.json` / `netlify.toml`), so a returning visitor keeps whatever copy their browser already has. **Bump the `v` in all eight pages, in the same pass, whenever you change either file** — otherwise a visitor runs old JS against new HTML. That skew is not theoretical: removing the price element while the cached script still wrote to it threw a TypeError that silently killed the property lightbox (2026-08-19). Relatedly, `script.js` must stay null-safe about the DOM — read and write through guards, never assume a slot exists.
+
+**`404.html` is the one page that may use root-absolute paths (`/css/style.css`, `/properties.html`).** Every other page uses relative ones so the site still opens from `file://`. The 404 cannot: it is served at whatever URL the visitor mistyped, so `css/style.css` would resolve against `/some/wrong/path/` and the page would arrive unstyled at the exact moment someone is already lost. `<base href="/">` would fix the assets but would also send the `#main` skip link to the home page. It carries `noindex`, stays out of `sitemap.xml`, and is linked from nowhere.
 
 **Header and footer markup is duplicated into every page, deliberately.** With no build step there are no includes, and duplication beats JS injection: the chrome renders without scripting and every page stays crawlable. The cost is that a change to the nav or footer must be applied to all eight files — do it in one pass, and diff them afterwards.
 
