@@ -297,52 +297,59 @@
         return;
       }
 
-      submit(new URLSearchParams(new FormData(form)).toString());
+      handOff();
     });
 
-    var button = form.querySelector('.form__submit');
-    var LOCAL = ['localhost', '127.0.0.1', ''].indexOf(window.location.hostname) !== -1;
+    var WHATSAPP = '2348030555002';
+
+    /* Where the enquiry goes.
+
+       This form was written for Netlify Forms; the site is deployed on Vercel,
+       where that endpoint does not exist, so every submission returned 405 and
+       nothing ever reached anyone. Email would need a domain and a monitored
+       mailbox, neither of which exists yet.
+
+       So the form composes the enquiry and hands it to WhatsApp on the business
+       number. The form still earns its place: it asks for the four things worth
+       having, validates them, and produces a message that arrives structured
+       rather than as "hi is this still available". The button says WhatsApp and
+       so does the note under it — nobody should have their details handed to
+       another service without being told. */
+    function handOff() {
+      /* Honeypot. A bot that filled the hidden field gets the success state and
+         nothing else; do not open anything. */
+      var pot = form.querySelector('[name="bot-field"]');
+      if (pot && pot.value) { succeed(); return; }
+
+      var get = function (id) {
+        var el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+      };
+
+      var text =
+        'Enquiry from the KCGLOBAL Worldwide website\n\n' +
+        'Name: ' + get('cf-name') + '\n' +
+        'Phone: ' + get('cf-phone') + '\n' +
+        'Email: ' + get('cf-email') + '\n\n' +
+        get('cf-message');
+
+      var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
+
+      /* Opened from inside a click-driven submit, so the popup blocker allows
+         it. If it is blocked anyway, navigate this tab rather than lose the
+         enquiry. */
+      var win = window.open(url, '_blank', 'noopener');
+      if (!win) window.location.href = url;
+
+      succeed();
+    }
 
     function succeed() {
-      status.textContent = 'Thank you — your message has been received. We will be in touch shortly.';
+      status.innerHTML = 'Opening WhatsApp with your details filled in — press send there ' +
+        'to reach us. If nothing opened, call <a href="tel:+2348030555002">08030555002</a>.';
       status.className = 'form__status is-success';
       form.reset();
       rules.forEach(function (rule) { setError(rule, ''); });
-    }
-
-    function fail() {
-      /* Never strand someone who typed out a real enquiry — hand them the
-         phone numbers rather than just saying "something went wrong". */
-      status.innerHTML = 'Sorry — that did not send. Please call ' +
-        '<a href="tel:+2348030555002">08030555002</a> or ' +
-        '<a href="https://wa.me/2348030555002" target="_blank" rel="noopener">message us on WhatsApp</a>.';
-      status.className = 'form__status is-error';
-    }
-
-    function submit(body) {
-      /* Posting to "/" is how Netlify Forms receives an AJAX submission; the
-         form-name hidden field routes it to the right form. */
-      if (LOCAL) {
-        // Running from a local server or file://, where no Netlify endpoint
-        // exists. Show the success state so the flow can be demoed, and say so
-        // in the console. On the deployed site the real request below runs.
-        console.info('[demo mode] not sent — no Netlify endpoint locally. Payload:', body);
-        succeed();
-        return;
-      }
-
-      button.disabled = true;
-      status.textContent = 'Sending…';
-      status.className = 'form__status';
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
-      })
-        .then(function (res) { res.ok ? succeed() : fail(); })
-        .catch(fail)
-        .then(function () { button.disabled = false; });
     }
   })();
 

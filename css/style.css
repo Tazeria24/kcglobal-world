@@ -1569,6 +1569,23 @@ body.is-locked { overflow: hidden; }
 
 .form__submit { justify-self: start; }
 
+/* Sits between the button and the status line: says where the enquiry is
+   about to go, before it goes. The form gap already spaces it, so no margin. */
+.form__note {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-snug);
+  color: var(--ink-soft);
+}
+
+.form__note a {
+  color: var(--green-700);
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .form__status {
   margin: 0;
   font-size: var(--fs-meta);

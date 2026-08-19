@@ -45,8 +45,8 @@
 
   <!-- ===== ICONS & STYLES ===== -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=20260819b">
-  <script src="js/script.js?v=20260819b" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=20260819c">
+  <script src="js/script.js?v=20260819c" defer></script>
 
   <script>document.documentElement.classList.remove('no-js');</script>
 </head>
@@ -126,12 +126,11 @@
          CONFIRM below, and should have a qualified practitioner read it against
          the Nigeria Data Protection Act 2023.
 
-         KNOWN GAP: §3 describes the enquiry form as reaching us. On the current
-         Vercel deployment it does not — the form posts to a Netlify Forms
-         endpoint that does not exist there, gets a 405 and shows the caller a
-         phone fallback. Either wire the form to a real endpoint or remove it,
-         then this section becomes true. Do not publish the policy describing a
-         submission path that silently fails. -->
+         RESOLVED 2026-08-19: the enquiry form previously posted to a Netlify
+         endpoint that does not exist on this host and silently 405'd. It now
+         composes the enquiry and hands it to WhatsApp on the business number,
+         which is what §3 and §6 describe. If the form is ever pointed at a real
+         mailbox instead, both sections must be rewritten to match. -->
 
     <section class="section">
       <div class="container">
@@ -218,9 +217,18 @@
                 which listings you looked at.
               </p>
               <p>
-                You may also reach us by phone, by WhatsApp or by email. In those cases we
-                receive whatever that service passes to us — typically your number or email
-                address, and the content of your message.
+                <strong>The form sends your enquiry through WhatsApp.</strong> When you press
+                <em>Send via WhatsApp</em>, nothing is transmitted from this website. Your
+                browser opens WhatsApp with the four answers above written into a message,
+                addressed to our business number. You can read it, change it, or close it
+                without sending. Nothing reaches us until you press send in WhatsApp, and at
+                that point WhatsApp is carrying the message, so Meta's privacy policy applies
+                to it as well as ours.
+              </p>
+              <p>
+                You may also reach us by phone, by WhatsApp or by email directly. In those
+                cases we receive whatever that service passes to us — typically your number or
+                email address, and the content of your message.
               </p>
               <p>
                 <strong>Please do not send us documents or identification through the form.</strong>
@@ -299,9 +307,10 @@
                     Google and may set Google's own cookies when it loads.</dd>
               </div>
               <div class="legal__def">
-                <dt>WhatsApp <span class="legal__def-note">(only if you click)</span></dt>
-                <dd>Our WhatsApp buttons are ordinary links. Nothing is sent to WhatsApp or
-                    Meta unless you choose to click one and send a message.</dd>
+                <dt>WhatsApp <span class="legal__def-note">(only if you choose to send)</span></dt>
+                <dd>Our WhatsApp buttons are ordinary links, and the enquiry form opens
+                    WhatsApp with a message written for you. Nothing reaches WhatsApp or Meta
+                    until you press send there.</dd>
               </div>
             </dl>
 

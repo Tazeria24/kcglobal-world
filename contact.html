@@ -68,8 +68,8 @@
 
   <!-- ===== ICONS & STYLES ===== -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/style.css?v=20260819b">
-  <script src="js/script.js?v=20260819b" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=20260819c">
+  <script src="js/script.js?v=20260819c" defer></script>
 
   <script>document.documentElement.classList.remove('no-js');</script>
 </head>
@@ -152,8 +152,9 @@
           <p class="eyebrow">Reach us</p>
           <h2 id="contact-title">Three ways, all of them answered</h2>
           <p>
-            Call either number, message us on WhatsApp, or send the form below. Same working day
-            for calls and WhatsApp in nearly every case; within one working day for the form.
+            Call either number or message us on WhatsApp — same working day in nearly
+            every case. The form below writes your enquiry out for you and hands it
+            to WhatsApp, so it reaches us the same way.
           </p>
         </div>
 
@@ -210,13 +211,13 @@
 
           <div class="contact__form-wrap reveal">
             <h3 class="contact__form-title">Book a consultation</h3>
-            <!-- Netlify Forms: the deploy bot parses this markup at build time
-                 and provisions the endpoint. `name` and data-netlify are what
-                 register it; form-name must also be submitted in the body
-                 because JS posts this via fetch rather than a native submit. -->
-            <form class="form" id="contact-form" name="contact" method="POST"
-                  data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
-              <input type="hidden" name="form-name" value="contact">
+            <!-- This form does not post anywhere. script.js validates it, composes
+                 the enquiry and hands it to WhatsApp on the business number — see
+                 handOff() for why. It was previously wired to Netlify Forms, which
+                 does not exist on this host, so every submission silently 405'd.
+                 If a monitored mailbox is ever set up, swap handOff() for a real
+                 endpoint and change the button label and the note back. -->
+            <form class="form" id="contact-form" name="contact" novalidate>
 
               <!-- Spam honeypot. `hidden` keeps it out of the accessibility
                    tree and tab order entirely, while still being submitted —
@@ -254,7 +255,21 @@
                 <p class="field__error" id="cf-message-error" hidden></p>
               </div>
 
-              <button class="btn form__submit" type="submit">Send Message</button>
+              <button class="btn form__submit" type="submit">Send via WhatsApp</button>
+              <p class="form__note">
+                Sending opens WhatsApp with your details filled in, so you can see
+                exactly what you send. Prefer not to use WhatsApp? Call
+                <a href="tel:+2348030555002">08030555002</a> or
+                <a href="tel:+2348182341691">08182341691</a>.
+              </p>
+
+              <noscript>
+                <p class="form__note">
+                  This form needs JavaScript to send. Please call
+                  <a href="tel:+2348030555002">08030555002</a> or
+                  <a href="tel:+2348182341691">08182341691</a> instead.
+                </p>
+              </noscript>
 
               <p class="form__status" id="cf-status" role="status" aria-live="polite"></p>
             </form>
