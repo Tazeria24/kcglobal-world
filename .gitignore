@@ -12,3 +12,10 @@ node_modules/
 
 # MCP connector config — contains a secret, must never be committed
 .mcp.json
+
+# Loose source photos dropped in the project root. The ones in use are
+# copied into assets/properties/ under content-descriptive names; these
+# originals stay on disk but out of the repo.
+/*.jpg
+/*.jpeg
+/*.png
