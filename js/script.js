@@ -368,6 +368,7 @@
     var shots = [];
     var index = 0;
     var lastFocus = null;
+    var hideTimer = null;
 
     /* Cards request 800px-wide images; the dialog is much larger, so ask
        Unsplash for a bigger rendition of the same photo. */
@@ -419,6 +420,15 @@
       return el ? el.textContent.trim() : '';
     }
 
+    /* Null-safe. A field removed from the markup must never take the dialog
+       down with it: a browser holding a cached copy of this script will look
+       for slots the current HTML no longer has, and a thrown TypeError here
+       aborts populate() before the dialog is ever shown. Skip what is absent. */
+    function setText(id, value) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
     function populate(card) {
       var mainImg = card.querySelector('.property__media img');
       var title = text(card, '.property__title');
@@ -431,21 +441,23 @@
         if (url) shots.push({ src: url, alt: title + ' — additional photo' });
       });
 
-      document.getElementById('lb-title').textContent = title;
-      document.getElementById('lb-desc').textContent = card.dataset.description || '';
+      setText('lb-title', title);
+      setText('lb-desc', card.dataset.description || '');
 
       var tagEl = document.getElementById('lb-tag');
-      tagEl.textContent = tag;
-      tagEl.hidden = !tag;
+      if (tagEl) {
+        tagEl.textContent = tag;
+        tagEl.hidden = !tag;
+      }
 
       /* Rebuild location and meta with their icons intact */
       var locEl = document.getElementById('lb-location');
       var srcLoc = card.querySelector('.property__location');
-      locEl.innerHTML = srcLoc ? srcLoc.innerHTML : '';
+      if (locEl) locEl.innerHTML = srcLoc ? srcLoc.innerHTML : '';
 
       var metaEl = document.getElementById('lb-meta');
       var srcMeta = card.querySelector('.property__meta');
-      metaEl.innerHTML = srcMeta ? srcMeta.innerHTML : '';
+      if (metaEl) metaEl.innerHTML = srcMeta ? srcMeta.innerHTML : '';
 
       waLink.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(
         'Hello KCGLOBAL, I would like to enquire about the ' + title +
@@ -491,6 +503,11 @@
       lastFocus = trigger;
       populate(card);
 
+      /* Cancel a close still waiting out its fade. Without this, opening a
+         second listing within 400ms of closing the first lets the old timer
+         fire and re-hide the dialog that just opened — the card looks dead. */
+      if (hideTimer) { window.clearTimeout(hideTimer); hideTimer = null; }
+
       box.hidden = false;
       document.body.classList.add('is-locked');
       /* Next frame, so the transition has a start state to animate from */
@@ -506,9 +523,9 @@
       document.removeEventListener('keydown', onKey);
       document.body.classList.remove('is-locked');
 
-      var done = function () { box.hidden = true; };
+      var done = function () { box.hidden = true; hideTimer = null; };
       if (reduceMotion.matches) done();
-      else window.setTimeout(done, 400);
+      else hideTimer = window.setTimeout(done, 400);
 
       if (lastFocus) lastFocus.focus();
     }
@@ -534,7 +551,8 @@
        The form lives on contact.html, so from any page without it we carry the
        listing across in the query string and let contactForm() read it back. */
     callback.addEventListener('click', function () {
-      var title = document.getElementById('lb-title').textContent;
+      var titleEl = document.getElementById('lb-title');
+      var title = titleEl ? titleEl.textContent : '';
       var message = document.getElementById('cf-message');
       close();
 

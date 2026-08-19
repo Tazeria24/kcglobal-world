@@ -33,7 +33,10 @@
 
 # ----------------------------------------------------------------------------
 # Caching. Static assets are immutable-ish; the HTML must always revalidate so
-# content edits appear immediately.
+# content edits appear immediately. Because css/ and js/ are held for a year,
+# the pages link them with a ?v=YYYYMMDD query string — bump it in all seven
+# pages whenever either file changes, or returning visitors run stale JS
+# against fresh HTML.
 # ----------------------------------------------------------------------------
 [[headers]]
   for = "/*.html"
