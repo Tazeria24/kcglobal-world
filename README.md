@@ -37,7 +37,11 @@ Open this folder in Claude Code and paste `prompts/KICKOFF-PROMPT.md`. Claude Co
 ## Before launch
 Replace everything marked **[SAMPLE — client review]** in `docs/CONTENT.md` (properties, testimonials, stats), and everything flagged in the pages with `<!-- REVIEW: sample data -->` or `<!-- REVIEW: expanded copy -->`. The expanded copy on the detail pages was authored to the brief and includes **commitments, fee structures and process promises the client must confirm or strike** — these carry legal and reputational weight, so do not launch without a read-through.
 
-Also: confirm the email and social handles, swap the Google Maps embed for the client's exact pin, drop the real logo into `assets/`, replace the placeholder domain in every `canonical` / `og:url` / `sitemap.xml` / `robots.txt`, and verify the Netlify form endpoint receives submissions.
+Also: confirm the email and social handles, swap the Google Maps embed for the client's exact pin, drop the real logo into `assets/`, and verify the Netlify form endpoint receives submissions.
+
+The canonical host is the live Vercel URL as of 2026-08-19 — it was a placeholder domain that does not resolve, which told Google to index an address that does not exist and kept the site out of the index entirely. If a custom domain is connected, change it in every page's `canonical` and `og:url`, in `sitemap.xml`, `robots.txt` and the JSON-LD on `index.html`, all in one pass.
+
+**Getting found on Google needs two things the code cannot do:** submit the site in Google Search Console (verify ownership, submit `sitemap.xml`, request indexing), and create a Google Business Profile for the Abule-Ado address — the business panel that appears beside a company-name search comes from that profile, not from the website.
 
 ## Brand
 - **KCGLOBAL Worldwide** — *We Set The Pace In Real Estate*

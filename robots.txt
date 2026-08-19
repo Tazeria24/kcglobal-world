@@ -1,5 +1,5 @@
 # KCGLOBAL Worldwide
-# TODO(deploy): replace the Sitemap host with the live domain before launch.
+# Sitemap host is the live Vercel URL. Change it if a custom domain is added.
 
 User-agent: *
 Allow: /
@@ -7,4 +7,4 @@ Allow: /
 # Specs are not part of the site
 Disallow: /docs/
 
-Sitemap: https://kcglobalworld.com/sitemap.xml
+Sitemap: https://kcglobal-world.vercel.app/sitemap.xml
