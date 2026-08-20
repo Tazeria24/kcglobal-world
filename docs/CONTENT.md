@@ -138,7 +138,7 @@ that they be kept. Do not offer to replace them again.
 - **Heading:** Let's Talk Property
 - **Sub:** Book a consultation or reach us directly — we respond quickly.
 - Phones (both, as `tel:` links), address, email (above).
-- **Map:** keyless Google Maps embed on the office coordinates `6.4707158,3.2524477`, supplied by the client 2026-08-20. The same figures appear in the `geo` block of the JSON-LD on `index.html` — change both together.
+- **Map:** keyless Google Maps embed on the office coordinates `6.4707575,3.2524393`, supplied by the client 2026-08-20. The same figures appear in the `geo` block of the JSON-LD on `index.html` — change both together.
 - **Form fields:** Full Name, Email, Phone, Message, submit button "Send Message". On submit: validate, show an inline success message, and leave a `// TODO: wire to backend/endpoint` comment. No real submission in v1.
 
 ---
