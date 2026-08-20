@@ -154,7 +154,7 @@ Add a location map for the office. Same keyless embed already used on the HTML
 site's contact page, so no API key is needed:
 
 ```
-https://www.google.com/maps?q=Abule-Ado,+Lagos,+Nigeria&output=embed
+https://www.google.com/maps?q=6.4707563,3.2524331&z=17&output=embed
 ```
 
 Place it where the template's contact/location section expects a map or media

@@ -138,7 +138,7 @@ that they be kept. Do not offer to replace them again.
 - **Heading:** Let's Talk Property
 - **Sub:** Book a consultation or reach us directly — we respond quickly.
 - Phones (both, as `tel:` links), address, email (above).
-- **Map:** Google Maps embed placeholder centred on Abule-Ado, Lagos (leave a clearly-commented `<iframe>` placeholder to swap for the client's exact pin).
+- **Map:** keyless Google Maps embed on the office coordinates `6.4707563,3.2524331`, supplied by the client 2026-08-20. The same figures appear in the `geo` block of the JSON-LD on `index.html` — change both together.
 - **Form fields:** Full Name, Email, Phone, Message, submit button "Send Message". On submit: validate, show an inline success message, and leave a `// TODO: wire to backend/endpoint` comment. No real submission in v1.
 
 ---
